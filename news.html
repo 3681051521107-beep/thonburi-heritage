@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="light" lang="th">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>News & Events - Thonburi Heritage</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;900&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "secondary": "#5D4037",
+                        "heritage-gold": "#C5A059",
+                        "background-light": "#f8f6f6",
+                    },
+                    fontFamily: { "display": ["Noto Sans Thai", "Public Sans", "sans-serif"] },
+                },
+            },
+        }
+    </script>
+    <style>
+        body { font-family: 'Noto Sans Thai', sans-serif; scroll-behavior: smooth; }
+        #page-loader {
+            position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 1;
+            transition: opacity 0.5s ease-in-out; display: flex; align-items: center; justify-content: center;
+        }
+        #page-loader.fade-out { opacity: 0; }
+        .news-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .news-card:hover { transform: translateY(-8px); }
+        
+        /* แก้ไข Error @apply: เปลี่ยนเป็น Standard CSS */
+        .filter-btn.active { 
+            background-color: #ec5b13; /* primary color */
+            color: white; 
+            border-color: #ec5b13;
+            box-shadow: 0 10px 15px -3px rgba(236, 91, 19, 0.3); /* shadow-lg shadow-primary/30 */
+        }
+    </style>
+    <meta name="description" content="สัมผัสมรดกทางวัฒนธรรมย่านธนบุรีและคลองบางกอกน้อย ย้อนรอยประวัติศาสตร์ผ่านเทคโนโลยีดิจิทัล">
+
+    <meta name="keywords" content="ธนบุรี, คลองบางกอกน้อย, มรดกทางวัฒนธรรม, เที่ยวฝั่งธน, วัดสุวรรณาราม, บ้านบุ">
+
+    <meta property="og:title" content="Thonburi Heritage - จิตวิญญาณแห่งธนบุรี">
+    <meta property="og:description" content="โครงการอนุรักษ์มรดกดิจิทัลเพื่อชุมชนริมคลองบางกอกน้อย">
+    <meta property="og:image" content="URL_รูปภาพหน้าปกเว็บของคุณ">
+</head>
+<body class="bg-background-light text-slate-900 font-display">
+
+<div id="page-loader" class="bg-background-light pt-20 pb-10 px-6 text-center border-t border-primary/20">
+    <div class="flex flex-col items-center gap-4">
+        <span class="material-symbols-outlined text-primary text-6xl animate-bounce">temple_buddhist</span>
+        <p class="text-secondary font-bold tracking-widest uppercase text-xs">กำลังโหลดข่าวสารมรดก...</p>
+    </div>
+</div>
+
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-secondary/95 backdrop-blur-md border-b border-heritage-gold/20">
+        <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between text-white">
+            <div class="flex items-center gap-3 text-heritage-gold">
+                <span class="material-symbols-outlined text-3xl">temple_buddhist</span>
+                <h2 class="text-white text-xl font-bold tracking-tight">Thonburi Heritage</h2>
+            </div>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="index.html" class="hover:text-primary transition-all">หน้าแรก</a>
+                <a href="routes.html" class="hover:text-primary transition-all">แผนที่</a>
+                <a href="f.html" class="hover:text-primary transition-all">แหล่งมรดก</a>
+                <a href="news.html" class="text-primary font-bold border-b-2 border-primary pb-1">ข่าวสาร</a>
+                <a href="about.html" class="hover:text-primary transition-all">เกี่ยวกับเรา</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <section class="bg-secondary py-20 px-6">
+            <div class="max-w-7xl mx-auto text-center">
+                <span class="text-heritage-gold font-black tracking-[0.3em] uppercase text-xs mb-4 block">Updates</span>
+                <h1 class="text-4xl md:text-6xl font-black text-white mb-6">ข่าวสารและกิจกรรม</h1>
+                <p class="text-white/60 text-lg max-w-2xl mx-auto font-light leading-relaxed">เกาะติดทุกความเคลื่อนไหว การบูรณะแหล่งมรดก และกิจกรรมทางวัฒนธรรมในย่านธนบุรี</p>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-6 -mt-8 relative z-10">
+            <div class="bg-white p-4 rounded-3xl shadow-2xl border border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex gap-2" id="filter-container">
+                    <button onclick="filterNews('all')" class="filter-btn active px-6 py-2 rounded-full text-xs font-bold border border-slate-200 transition-all">ทั้งหมด</button>
+                    <button onclick="filterNews('event')" class="filter-btn px-6 py-2 rounded-full text-xs font-bold border border-slate-200 transition-all">กิจกรรม</button>
+                    <button onclick="filterNews('update')" class="filter-btn px-6 py-2 rounded-full text-xs font-bold border border-slate-200 transition-all">ประกาศข่าว</button>
+                </div>
+                <div class="relative w-full md:w-64">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+                    <input type="text" class="w-full pl-10 pr-4 py-2 bg-slate-50 border-none rounded-2xl text-xs focus:ring-2 focus:ring-primary/20" placeholder="ค้นหาข่าวสาร...">
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="news-grid">
+                </div>
+        </section>
+    </main>
+
+    <footer class="bg-secondary text-white pt-20 pb-10 px-6 text-center border-t border-heritage-gold/20">
+        <h2 class="text-2xl font-bold mb-8 text-heritage-gold">Thonburi Heritage</h2>
+        <p class="text-white/30 text-xs uppercase tracking-widest leading-relaxed">
+            เชื่อมต่อประวัติศาสตร์สู่เทคโนโลยีเพื่อความยั่งยืนของชุมชน<br>
+            © 2026 Thonburi Heritage Project Management
+        </p>
+    </footer>
+</div>
+
+<script>
+    const newsData = [
+        {
+            title: "เทศกาลล่องเรือชมไฟคลองบางกอกน้อย 2026",
+            date: "24 ก.พ. 2026",
+            cat: "event",
+            img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAT3ztVMcOWNIAd3p7V2Yr-2ZkZzQI49hM-9fmfDFNJcXcGRZww6rweAWsDdOQxmH9ormymp4fslCMO-nPrffbUHkFmUs_gP-77wml4C9faTwdFyrmHXwA-Banvyc2D79pfFoMrT9fvBVJmM-68Akr9L1wCZtsCbPUbYJxC7TvEGtZi0GkCCW15zANalerSIswEbb7yXIc7xo5ueAE_6taKqGtRI94aFYlyVolx2q6egQ7B8kI45UyqXBtJPSvwx833oa97NHL3Qtk0",
+            desc: "เชิญชวนร่วมงานล่องเรือยามค่ำคืน สัมผัสแสงสีที่ประดับประดาตามวัดวาอารามตลอดสองฝั่งคลอง..."
+        },
+        {
+            title: "เริ่มการบูรณะจิตรกรรมฝาผนังวัดสุวรรณาราม",
+            date: "15 ก.พ. 2026",
+            cat: "update",
+            img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAT3ztVMcOWNIAd3p7V2Yr-2ZkZzQI49hM-9fmfDFNJcXcGRZww6rweAWsDdOQxmH9ormymp4fslCMO-nPrffbUHkFmUs_gP-77wml4C9faTwdFyrmHXwA-Banvyc2D79pfFoMrT9fvBVJmM-68Akr9L1wCZtsCbPUbYJxC7TvEGtZi0GkCCW15zANalerSIswEbb7yXIc7xo5ueAE_6taKqGtRI94aFYlyVolx2q6egQ7B8kI45UyqXBtJPSvwx833oa97NHL3Qtk1",
+            desc: "กรมศิลปากรเริ่มขั้นตอนการสำรวจและบูรณะภาพทศชาติชาดกในพระอุโบสถ คาดใช้เวลาประมาณ 6 เดือน..."
+        },
+        {
+            title: "เปิดเส้นทางจักรยานชมมรดกชุมชนบ้านบุ",
+            date: "10 ก.พ. 2026",
+            cat: "event",
+            img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAT3ztVMcOWNIAd3p7V2Yr-2ZkZzQI49hM-9fmfDFNJcXcGRZww6rweAWsDdOQxmH9ormymp4fslCMO-nPrffbUHkFmUs_gP-77wml4C9faTwdFyrmHXwA-Banvyc2D79pfFoMrT9fvBVJmM-68Akr9L1wCZtsCbPUbYJxC7TvEGtZi0GkCCW15zANalerSIswEbb7yXIc7xo5ueAE_6taKqGtRI94aFYlyVolx2q6egQ7B8kI45UyqXBtJPSvwx833oa97NHL3Qtk2",
+            desc: "สัมผัสวิถีช่างขันลงหินผ่านเส้นทางจักรยานรอบชุมชน พร้อมเรียนรู้เทคนิคการทำหัตถกรรมโบราณ..."
+        }
+    ];
+
+    function renderNews(filter = 'all') {
+        const grid = document.getElementById('news-grid');
+        grid.innerHTML = newsData
+            .filter(item => filter === 'all' || item.cat === filter)
+            .map(item => `
+                <article class="news-card bg-white rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl border border-slate-100 flex flex-col h-full group cursor-pointer">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="${item.img}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-6 left-6 px-4 py-1.5 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-black text-primary uppercase tracking-widest shadow-sm">
+                            ${item.cat === 'event' ? 'Event' : 'Announcement'}
+                        </div>
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <time class="text-xs font-bold text-slate-400 mb-2 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-xs">calendar_today</span> ${item.date}
+                        </time>
+                        <h3 class="text-xl font-black text-secondary mb-4 leading-tight group-hover:text-primary transition-colors">${item.title}</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed mb-6 line-clamp-3 font-light">${item.desc}</p>
+                        <div class="mt-auto pt-4 border-t border-slate-50 flex items-center justify-between text-primary font-bold text-xs uppercase tracking-widest">
+                            <span>อ่านรายละเอียด</span>
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+    }
+
+    function filterNews(cat) {
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+        renderNews(cat);
+    }
+
+    // Smooth Navigation (ห้ามขาด)
+    document.querySelectorAll('a[href]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const dest = this.getAttribute('href');
+            if (dest && dest !== '#' && !dest.startsWith('http')) {
+                e.preventDefault();
+                document.getElementById('page-loader').classList.remove('fade-out');
+                setTimeout(() => { window.location.href = dest; }, 500);
+            }
+        });
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+        renderNews();
+        setTimeout(() => document.getElementById('page-loader').classList.add('fade-out'), 500);
+    });
+</script>
+</body>
+</html>

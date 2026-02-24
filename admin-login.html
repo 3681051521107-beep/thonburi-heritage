@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html class="light" lang="th">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;900&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#C5A059", // Gold
+                        "secondary": "#5D4037", // Wood Brown
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Noto Sans Thai", "Public Sans", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body { font-family: 'Noto Sans Thai', 'Public Sans', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark min-h-screen flex items-center justify-center p-6 relative overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-secondary/80 z-10"></div>
+        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLRfte945hf8oxRjPURa7aY6T9kF97aUVbtCbg8YzQdP1f6LtuIpBWAXzeCWeNtk_-1w0I5fBQlM4NZptgrBZdMDcC4H-BTtvHnKkCQdaqIEDSuG8uakF6rIpjHoWCDTX_7-jLDoEbCqDSvxTLgy0S6RkCkWZreN3hkxCg71zinfrXtKnVqrO2-0LzKO4F3aRI6OniO2rN99zpfMAlURh9vNaS-Cd_UVx8dqaee-Zm32XFrF-h-sCFeVIYx3Dmih5ZuvoWg6stqhE" alt="Background"/>
+    </div>
+
+    <div class="relative z-20 w-full max-w-md">
+        <div class="glass-panel p-8 md:p-10 rounded-3xl shadow-2xl">
+            
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-4">
+                    <span class="material-symbols-outlined text-primary text-5xl"></span>
+                </div>
+                <h1 class="text-secondary text-2xl font-black mb-2">Admin Portal</h1>
+                <p class="text-secondary/60 text-sm">ระบบจัดการข้อมูลมรดกทางวัฒนธรรมธนบุรี</p>
+            </div>
+
+            <form action="#" class="space-y-6">
+                <div>
+                    <label class="block text-secondary text-sm font-bold mb-2 ml-1">ชื่อผู้ใช้งาน (Username)</label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary/60">ชื่อผู้ใช้งาน</span>
+                        <input type="text" 
+                               class="w-full bg-secondary/5 border border-primary/20 rounded-xl py-3.5 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                               >
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-secondary text-sm font-bold mb-2 ml-1">รหัสผ่าน (Password)</label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary/60">รหัสผ่าน</span>
+                        <input type="password" 
+                               class="w-full bg-secondary/5 border border-primary/20 rounded-xl py-3.5 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                               >
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between text-sm">
+                    <label class="flex items-center gap-2 text-secondary/70 cursor-pointer">
+                        <input type="checkbox" class="rounded border-primary/30 text-primary focus:ring-primary">
+                        <span>จดจำการใช้งาน</span>
+                    </label>
+                    <a href="#" class="text-primary font-bold hover:underline">ลืมรหัสผ่าน?</a>
+                </div>
+
+                <button type="submit" 
+                        class="w-full bg-primary hover:bg-primary/90 text-white font-black py-4 rounded-xl shadow-lg shadow-primary/20 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined">login</span>
+                    เข้าสู่ระบบจัดการ
+                </button>
+            </form>
+
+            <div class="mt-8 text-center">
+                <a href="index.html" class="text-secondary/40 text-sm hover:text-primary transition-colors flex items-center justify-center gap-1">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span>
+                    กลับสู่หน้าหลักสำหรับบุคคลทั่วไป
+                </a>
+            </div>
+        </div>
+
+        <p class="text-white/30 text-xs text-center mt-8 uppercase tracking-widest">
+            © 2024 Thonburi Heritage Project Management
+        </p>
+    </div>
+    <script>
+    document.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const inputs = this.querySelectorAll('input');
+        const username = inputs[0].value;
+        const password = inputs[1].value;
+
+        if(username === 'admin' && password === '1234') {
+            // แสดง Loader ก่อนไปหน้า Dashboard
+            document.getElementById('page-loader')?.classList.add('active');
+            setTimeout(() => {
+                window.location.href = 'admin-dashboard.html';
+            }, 500);
+        } else {
+            alert('ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง');
+        }
+    });
+</script>
+</body>
+</html>
