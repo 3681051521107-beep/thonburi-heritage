@@ -45,12 +45,9 @@
         #page-loader.active { opacity: 1; pointer-events: auto; }
     </style>
     <meta name="description" content="สัมผัสมรดกทางวัฒนธรรมย่านธนบุรีและคลองบางกอกน้อย ย้อนรอยประวัติศาสตร์ผ่านเทคโนโลยีดิจิทัล">
-
     <meta name="keywords" content="ธนบุรี, คลองบางกอกน้อย, มรดกทางวัฒนธรรม, เที่ยวฝั่งธน, วัดสุวรรณาราม, บ้านบุ">
-
     <meta property="og:title" content="Thonburi Heritage - จิตวิญญาณแห่งธนบุรี">
     <meta property="og:description" content="โครงการอนุรักษ์มรดกดิจิทัลเพื่อชุมชนริมคลองบางกอกน้อย">
-    <meta property="og:image" content="URL_รูปภาพหน้าปกเว็บของคุณ">
 </head>
 
 <body class="bg-background-light dark:bg-background-dark text-secondary dark:text-slate-100">
@@ -121,7 +118,7 @@
 </section>
 
 <section class="py-24 px-6 max-w-[1440px] mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-32">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-16">
         <div class="relative">
             <div class="absolute -top-10 -left-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>
             <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl border-4 border-primary/20">
@@ -145,36 +142,142 @@
                 <p>ย่านธนบุรีและคลองบางกอกน้อย ไม่ได้เป็นเพียงแค่ทางน้ำไหลผ่าน แต่เป็นเส้นเลือดใหญ่ที่หล่อเลี้ยงประวัติศาสตร์ไทยมาอย่างยาวนาน ตั้งแต่ครั้งสมัยอยุธยาที่เป็นเมืองหน้าด่านสำคัญ</p>
                 <p>เมื่อกาลเวลาผันผ่านสู่สมัยกรุงธนบุรี พื้นที่แห่งนี้ได้กลายเป็นจุดยุทธศาสตร์และศูนย์กลางแห่งอำนาจภายใต้พระบารมีของสมเด็จพระเจ้าตากสินมหาราช</p>
             </div>
-            <button class="flex items-center gap-3 text-secondary font-bold group">
-                <span class="border-b-2 border-primary group-hover:border-secondary transition-all text-secondary">อ่านเรื่องราวฉบับเต็ม</span>
-                <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_right_alt</span>
+            
+            <button onclick="toggleFullStory()" class="flex items-center gap-3 text-secondary font-bold group">
+                <span id="text-full-story" class="border-b-2 border-primary group-hover:border-secondary transition-all text-secondary">อ่านเรื่องราวฉบับเต็ม</span>
+                <span id="icon-full-story" class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_right_alt</span>
             </button>
+
+            <div id="full-story-content" class="max-h-0 overflow-hidden transition-all duration-700 ease-in-out bg-primary/5 rounded-3xl">
+                <div class="p-8 lg:p-10 space-y-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0KgUgSuHVgQreEFvIzGv0FFfQlcAE61YG2iYdiUhkdvDL48aKuvf19E4OjOzPTwB9hx3MJvYyDJjpb79-dPSkkC18ADu2k31_qie3uyvZqGVOLQ7TpvQKf8o-ubYGPShteVWF-W-pNIdsIxnK_zzUUf0IXDEoPTG8bSNY_PY_75Xjb5FkyML68htWkYWBeD0eGdT-hi6FcCEAUDeysNI0iBvkol0LS0LGLaIm3F4oLdN8C4rswAo0BaeGPQ0DLAcmq_HkKWg9e74" class="rounded-2xl h-64 w-full object-cover shadow-md" alt="ประวัติศาสตร์ 1">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCFvGC8euzgiCF0_lAWBoEpKlLoMuuiLXq-rwRhZ5LHL7Jdg0lr2BFZ6rtxPWgYdSoRR5rlkIoVOkkx_h3Ms7DoYUZo_E_KMZennirSZqx-5D-_5LF3eSN9MkjlwhCczbfNb1knHBClgP9mjsyo99rxsLLCBHmElGj9-Ut1Ndu3gpD0hytKrvKT0KMxy6iQjpa9cUsqKoCpfUhw5aNuaeMXjF7luQKL__x22M1L7hZYC5Z0e9IjRbhZccWt59t2O1W-UmtLAGQnjc" class="rounded-2xl h-64 w-full object-cover shadow-md" alt="ประวัติศาสตร์ 2">
+                    </div>
+                    <div class="space-y-6 text-lg leading-relaxed text-secondary/80 dark:text-slate-300 text-justify">
+                        <p class="font-bold text-primary text-xl">จุดเริ่มต้นจากกรุงเก่าสู่ราชธานีใหม่</p>
+                        <p>คลองบางกอกน้อย เดิมคือส่วนหนึ่งของแม่น้ำเจ้าพระยาสายเดิม ในสมัยสมเด็จพระไชยราชาธิราชแห่งกรุงศรีอยุธยา ได้มีการขุดคลองลัดเพื่อให้การเดินเรือสะดวกขึ้น จนกาลเวลาผ่านไป คลองลัดนั้นได้กลายเป็นแม่น้ำสายหลัก และสายน้ำเดิมกลายเป็น "คลองบางกอกน้อย" ในปัจจุบัน</p>
+                        <p>ในสมัยพระเจ้าตากสินมหาราช พื้นที่แห่งนี้เป็นจุดยุทธศาสตร์สำคัญ มีการตั้งค่ายรับศึกและเป็นที่ตั้งของชุมชนช่างฝีมือ เช่น ชุมชนบ้านบุ ที่สืบทอดการทำ "ขันลงหิน" มายาวนานกว่า 200 ปี ซึ่งเป็นมรดกทางภูมิปัญญาที่หาชมได้ยากในปัจจุบัน</p>
+                        <p>การมาเยือนธนบุรีจึงไม่ใช่แค่การท่องเที่ยว แต่คือการอ่านประวัติศาสตร์ที่ยังมีลมหายใจผ่านสถาปัตยกรรมวัดวาอาราม และรอยยิ้มของผู้คนริมสองฝั่งคลอง...</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="group relative bg-white dark:bg-secondary/40 p-8 rounded-2xl border border-primary/10 hover:border-primary transition-all shadow-sm hover:shadow-xl">
-            <div class="text-primary/20 text-7xl font-black absolute top-4 right-6 group-hover:text-primary/40 transition-colors">01</div>
-            <div class="relative z-10">
-                <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6"><span class="material-symbols-outlined text-3xl">castle</span></div>
-                <h3 class="text-2xl font-bold mb-4">รากฐานสมัยอยุธยา</h3>
-                <p class="text-secondary/60 leading-relaxed">จุดเริ่มต้นของการตั้งถิ่นฐานริมคลองบางกอกน้อย แหล่งเกษตรกรรมและเมืองหน้าด่านที่มั่งคั่ง</p>
+    <div class="space-y-16">
+        <div class="bg-white dark:bg-secondary/20 rounded-[3rem] border border-primary/10 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700">
+            <div class="flex flex-col lg:flex-row">
+                <div class="lg:w-[45%] h-80 lg:h-auto relative overflow-hidden group">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0KgUgSuHVgQreEFvIzGv0FFfQlcAE61YG2iYdiUhkdvDL48aKuvf19E4OjOzPTwB9hx3MJvYyDJjpb79-dPSkkC18ADu2k31_qie3uyvZqGVOLQ7TpvQKf8o-ubYGPShteVWF-W-pNIdsIxnK_zzUUf0IXDEoPTG8bSNY_PY_75Xjb5FkyML68htWkYWBeD0eGdT-hi6FcCEAUDeysNI0iBvkol0LS0LGLaIm3F4oLdN8C4rswAo0BaeGPQ0DLAcmq_HkKWg9e74" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" alt="สมัยอยุธยา">
+                    <div class="absolute inset-0 bg-gradient-to-t from-secondary/60 to-transparent opacity-60"></div>
+                    <div class="absolute bottom-8 left-8 text-white">
+                        <p class="text-xs tracking-[0.3em] uppercase mb-2">พุทธศตวรรษที่ ๒๑ - ๒๓</p>
+                        <h4 class="text-2xl font-black">ยุคกรุงเก่าหน้าด่าน</h4>
+                    </div>
+                </div>
+                <div class="lg:w-[55%] p-10 lg:p-16 flex flex-col justify-center relative">
+                    <div class="absolute top-10 right-10 text-primary/10 text-8xl font-black italic select-none">01</div>
+                    <span class="text-primary font-bold tracking-widest uppercase text-xs mb-4">Ayutthaya Period</span>
+                    <h3 class="text-4xl font-black text-secondary dark:text-white mb-6">รากฐานสมัยอยุธยา</h3>
+                    <p class="text-secondary/70 dark:text-slate-400 text-lg leading-relaxed mb-8">ก่อนจะมาเป็นย่านที่คึกคัก บางกอกน้อยคือ "เมืองหน้าด่าน" ที่สำคัญที่สุดของราชอาณาจักรอยุธยา...</p>
+                    <button onclick="toggleHistory('ayutthaya')" class="flex items-center gap-4 bg-secondary text-white dark:bg-primary dark:text-secondary px-8 py-3 rounded-full font-bold w-fit transition-all hover:gap-6 shadow-lg group">
+                        <span id="text-ayutthaya">เจาะลึกรายละเอียด</span>
+                        <span id="icon-ayutthaya" class="material-symbols-outlined transition-transform duration-500">add</span>
+                    </button>
+                    <div id="content-ayutthaya" class="max-h-0 overflow-hidden transition-all duration-700 ease-in-out">
+                        <div class="pt-10 mt-10 border-t border-primary/20 space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="space-y-4">
+                                    <h5 class="font-bold text-primary flex items-center gap-2 italic"><span class="material-symbols-outlined text-sm">map</span> คลองลัดเปลี่ยนประวัติศาสตร์</h5>
+                                    <p class="text-sm leading-relaxed text-secondary/60 dark:text-slate-300 text-justify">ในปี พ.ศ. 2065 สมเด็จพระไชยราชาธิราชทรงโปรดให้ขุด "คลองลัดบางกอก" เพื่อย่นระยะทางการเดินเรือสินค้า กระแสน้ำที่ไหลเชี่ยวทำให้คลองกว้างขึ้นจนกลายเป็นแม่น้ำเจ้าพระยาสายหลัก ส่วนแม่น้ำสายเดิมเดิมจึงกลายเป็น "คลองบางกอกน้อย" ในปัจจุบัน</p>
+                                </div>
+                                <div class="bg-primary/5 p-6 rounded-2xl border-l-4 border-primary">
+                                    <h5 class="font-bold text-secondary dark:text-white mb-2 italic">Did you know?</h5>
+                                    <p class="text-xs leading-relaxed text-secondary/60">ชื่อ "บางกอก" เชื่อว่ามาจากต้นมะกอกที่ขึ้นหนาแน่นตามริมน้ำในย่านนี้ โดยเฉพาะช่วงปากคลองบางกอกน้อยที่มีต้นไม้ใหญ่ปกคลุมจนเป็นสัญลักษณ์</p>
+                                </div>
+                            </div>
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCToBRHblHszmIKO7sui0m4k8D1QOeQrImG-kPd1hxi5sUGdxXOPciOn3JTM0EaSQHo9BgD_BmDlC8jd8aOFHv2PW-I7MrjmzncEwfEVI6VxJ1V8hrbMqcfhfzITaJmRXC4j5GOWprZEDkwMTivtPX3ehwAvDDlvdm_cgaTT1FY4SMqg4tzemDOzgyCARTqh0YtCRNK4f2Jk1_1jTsQT54-hlVrymrKW1qMXjmMWwYR9IRSOKiME-MuOfhlCSmSDijl3z8q7z7Gwuw" class="w-full h-48 object-cover rounded-2xl shadow-inner border border-primary/10" alt="แผนที่โบราณ">
+                            <p class="text-sm text-secondary/70 dark:text-slate-300 leading-relaxed text-justify">หลักฐานทางสถาปัตยกรรมที่ชัดเจนที่สุดคือ **วัดสุวรรณาราม** ซึ่งมีพระอุโบสถและจิตรกรรมฝาผนังที่สะท้อนถึงฝีมือช่างสิบหมู่ในยุคอยุธยาตอนปลายที่สมบูรณ์ที่สุดแห่งหนึ่งของไทย</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="group relative bg-white dark:bg-secondary/40 p-8 rounded-2xl border border-primary/10 hover:border-primary transition-all shadow-sm hover:shadow-xl">
-            <div class="text-primary/20 text-7xl font-black absolute top-4 right-6 group-hover:text-primary/40 transition-colors">02</div>
-            <div class="relative z-10">
-                <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6"><span class="material-symbols-outlined text-3xl">account_balance</span></div>
-                <h3 class="text-2xl font-bold mb-4">ราชธานีธนบุรี</h3>
-                <p class="text-secondary/60 leading-relaxed">ยุคทองของการเป็นศูนย์กลางอำนาจ การฟื้นฟูชาติและศิลปวัฒนธรรมริมสองฝั่งน้ำ</p>
+
+        <div class="bg-white dark:bg-secondary/20 rounded-[3rem] border border-primary/10 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700">
+            <div class="flex flex-col lg:flex-row-reverse">
+                <div class="lg:w-[45%] h-80 lg:h-auto relative overflow-hidden group">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCFvGC8euzgiCF0_lAWBoEpKlLoMuuiLXq-rwRhZ5LHL7Jdg0lr2BFZ6rtxPWgYdSoRR5rlkIoVOkkx_h3Ms7DoYUZo_E_KMZennirSZqx-5D-_5LF3eSN9MkjlwhCczbfNb1knHBClgP9mjsyo99rxsLLCBHmElGj9-Ut1Ndu3gpD0hytKrvKT0KMxy6iQjpa9cUsqKoCpfUhw5aNuaeMXjF7luQKL__x22M1L7hZYC5Z0e9IjRbhZccWt59t2O1W-UmtLAGQnjc" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" alt="สมัยธนบุรี">
+                    <div class="absolute inset-0 bg-gradient-to-t from-secondary/60 to-transparent opacity-60"></div>
+                    <div class="absolute bottom-8 right-8 text-white text-right">
+                        <p class="text-xs tracking-[0.3em] uppercase mb-2">พ.ศ. ๒๓๑๐ - ๒๓๒๕</p>
+                        <h4 class="text-2xl font-black">ราชธานีแห่งความหวัง</h4>
+                    </div>
+                </div>
+                <div class="lg:w-[55%] p-10 lg:p-16 flex flex-col justify-center relative">
+                    <div class="absolute top-10 left-10 text-primary/10 text-8xl font-black italic select-none">02</div>
+                    <span class="text-primary font-bold tracking-widest uppercase text-xs mb-4">Thonburi Era</span>
+                    <h3 class="text-4xl font-black text-secondary dark:text-white mb-6">ราชธานีธนบุรี</h3>
+                    <p class="text-secondary/70 dark:text-slate-400 text-lg leading-relaxed mb-8">เมื่อกรุงศรีอยุธยาล่มสลาย สมเด็จพระเจ้าตากสินมหาราชทรงสถาปนาธนบุรีเป็นเมืองหลวงใหม่ บางกอกน้อยจึงกลายเป็นเส้นยุทธศาสตร์ที่ "ยังมีชีวิต" และเป็นศูนย์กลางการกอบกู้ชาติ...</p>
+                    <button onclick="toggleHistory('thonburi')" class="flex items-center gap-4 bg-secondary text-white dark:bg-primary dark:text-secondary px-8 py-3 rounded-full font-bold w-fit transition-all hover:gap-6 shadow-lg group">
+                        <span id="text-thonburi">เจาะลึกรายละเอียด</span>
+                        <span id="icon-thonburi" class="material-symbols-outlined transition-transform duration-500">add</span>
+                    </button>
+                    <div id="content-thonburi" class="max-h-0 overflow-hidden transition-all duration-700 ease-in-out text-right">
+                        <div class="pt-10 mt-10 border-t border-primary/20 space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="bg-primary/5 p-6 rounded-2xl border-r-4 border-primary text-left order-2 md:order-1">
+                                    <h5 class="font-bold text-secondary dark:text-white mb-2 italic">Historical Fact</h5>
+                                    <p class="text-xs leading-relaxed text-secondary/60">ในยุคนี้ คลองบางกอกน้อยเป็นที่ตั้งของ "อู่เรือหลวง" ซึ่งต่อมาได้พัฒนาเป็นกรมอู่ทหารเรือในปัจจุบัน เป็นต้นกำเนิดของเทคโนโลยีการต่อเรือที่เข้มแข็งของไทย</p>
+                                </div>
+                                <div class="space-y-4 order-1 md:order-2">
+                                    <h5 class="font-bold text-primary flex items-center gap-2 justify-end italic"><span class="material-symbols-outlined text-sm">shield</span> ยุทธศาสตร์ปากคลอง</h5>
+                                    <p class="text-sm leading-relaxed text-secondary/60 dark:text-slate-300 text-justify">ด้วยทำเลที่เป็นคุ้งน้ำกว้าง ปากคลองบางกอกน้อยจึงเป็นจุดซุ่มโจมตีและป้องกันพระนครที่ดีเยี่ยม นอกจากนี้ยังเป็นที่รวมของ "ช่างสิบหมู่" ที่อพยพมาจากอยุธยา เพื่อช่วยกันสร้างพระราชวังและวัดวาอารามให้กลับมางดงามอีกครั้ง</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-secondary/70 dark:text-slate-300 leading-relaxed text-justify">มรดกชิ้นสำคัญคือ **ชุมชนบ้านบุ** ที่ได้รับพระบรมราชานุญาตให้ตั้งถิ่นฐานและสืบทอดการทำ **"ขันลงหิน"** งานหัตถศิลป์ชั้นสูงที่ใช้ในราชสำนักมาตั้งแต่ยุคนั้นจนถึงปัจจุบัน</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="group relative bg-white dark:bg-secondary/40 p-8 rounded-2xl border border-primary/10 hover:border-primary transition-all shadow-sm hover:shadow-xl">
-            <div class="text-primary/20 text-7xl font-black absolute top-4 right-6 group-hover:text-primary/40 transition-colors">03</div>
-            <div class="relative z-10">
-                <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6"><span class="material-symbols-outlined text-3xl">auto_awesome</span></div>
-                <h3 class="text-2xl font-bold mb-4">มรดกแห่งรัตนโกสินทร์</h3>
-                <p class="text-secondary/60 leading-relaxed">การสืบสานประเพณีและวิถีชีวิตดั้งเดิมที่ปรับตัวเข้ากับยุคสมัยแต่ยังคงรากเหง้าที่เข้มแข็ง</p>
+
+        <div class="bg-white dark:bg-secondary/20 rounded-[3rem] border border-primary/10 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700">
+            <div class="flex flex-col lg:flex-row">
+                <div class="lg:w-[45%] h-80 lg:h-auto relative overflow-hidden group">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCToBRHblHszmIKO7sui0m4k8D1QOeQrImG-kPd1hxi5sUGdxXOPciOn3JTM0EaSQHo9BgD_BmDlC8jd8aOFHv2PW-I7MrjmzncEwfEVI6VxJ1V8hrbMqcfhfzITaJmRXC4j5GOWprZEDkwMTivtPX3ehwAvDDlvdm_cgaTT1FY4SMqg4tzemDOzgyCARTqh0YtCRNK4f2Jk1_1jTsQT54-hlVrymrKW1qMXjmMWwYR9IRSOKiME-MuOfhlCSmSDijl3z8q7z7Gwuw" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="สมัยรัตนโกสินทร์"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-secondary/60 to-transparent opacity-60"></div>
+                    <div class="absolute bottom-8 left-8 text-white">
+                        <p class="text-xs tracking-[0.3em] uppercase mb-2">พ.ศ. ๒๓๒๕ - ปัจจุบัน</p>
+                        <h4 class="text-2xl font-black">มรดกที่มีลมหายใจ</h4>
+                    </div>
+                </div>
+                <div class="lg:w-[55%] p-10 lg:p-16 flex flex-col justify-center relative">
+                    <div class="absolute top-10 right-10 text-primary/10 text-8xl font-black italic select-none">03</div>
+                    <span class="text-primary font-bold tracking-widest uppercase text-xs mb-4">Rattanakosin Era</span>
+                    <h3 class="text-4xl font-black text-secondary dark:text-white mb-6">มรดกแห่งรัตนโกสินทร์</h3>
+                    <p class="text-secondary/70 dark:text-slate-400 text-lg leading-relaxed mb-8">แม้ศูนย์กลางอำนาจจะข้ามไปฝั่งพระนคร แต่บางกอกน้อยยังทำหน้าที่เป็น "พิพิธภัณฑ์ที่มีชีวิต" รวบรวมประเพณี วัฒนธรรมเรือหลวง และวิถีชุมชนที่หาดูได้ยาก...</p>
+                    <button onclick="toggleHistory('rattanakosin')" class="flex items-center gap-4 bg-secondary text-white dark:bg-primary dark:text-secondary px-8 py-3 rounded-full font-bold w-fit transition-all hover:gap-6 shadow-lg group">
+                        <span id="text-rattanakosin">เจาะลึกรายละเอียด</span>
+                        <span id="icon-rattanakosin" class="material-symbols-outlined transition-transform duration-500">add</span>
+                    </button>
+                    <div id="content-rattanakosin" class="max-h-0 overflow-hidden transition-all duration-700 ease-in-out">
+                        <div class="pt-10 mt-10 border-t border-primary/20 space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="space-y-4">
+                                    <h5 class="font-bold text-primary flex items-center gap-2 italic"><span class="material-symbols-outlined text-sm">directions_boat</span> จิตวิญญาณแห่งเรือพระราชพิธี</h5>
+                                    <p class="text-sm leading-relaxed text-secondary/60 dark:text-slate-300 text-justify">บางกอกน้อยเป็นที่ตั้งของ **พิพิธภัณฑ์สถานแห่งชาติ เรือพระราชพิธี** ซึ่งจัดเก็บเรือหลวงที่สง่างามที่สุดในโลก สะท้อนถึงความเกรียงไกรและพระบารมีของพระมหากษัตริย์ไทยในราชวงศ์จักรีทุกพระองค์</p>
+                                </div>
+                                <div class="bg-primary/5 p-6 rounded-2xl border-l-4 border-primary">
+                                    <h5 class="font-bold text-secondary dark:text-white mb-2 italic">Modern Heritage</h5>
+                                    <p class="text-xs leading-relaxed text-secondary/60">วันนี้ชุมชนไร้คานและตลาดบางกอกน้อย กลายเป็นแหล่งเรียนรู้การท่องเที่ยวเชิงวัฒนธรรมที่เชื่อมต่ออดีตสู่คนรุ่นใหม่ผ่านเทคโนโลยีดิจิทัล</p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-secondary/70 dark:text-slate-300 leading-relaxed text-justify italic">"ย่านนี้ไม่ได้แค่หายใจด้วยอากาศ แต่หายใจด้วยประวัติศาสตร์ที่ตกทอดจากรุ่นสู่รุ่น... นี่คือมนต์เสน่ห์ของธนบุรีที่ไม่มีวันตาย"</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -194,93 +297,117 @@
                 <div class="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 shadow-xl">
                     <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0KgUgSuHVgQreEFvIzGv0FFfQlcAE61YG2iYdiUhkdvDL48aKuvf19E4OjOzPTwB9hx3MJvYyDJjpb79-dPSkkC18ADu2k31_qie3uyvZqGVOLQ7TpvQKf8o-ubYGPShteVWF-W-pNIdsIxnK_zzUUf0IXDEoPTG8bSNY_PY_75Xjb5FkyML68htWkYWBeD0eGdT-hi6FcCEAUDeysNI0iBvkol0LS0LGLaIm3F4oLdN8C4rswAo0BaeGPQ0DLAcmq_HkKWg9e74"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-transparent opacity-60"></div>
-                    <div class="absolute bottom-6 left-6 right-6 text-left">
+                    <div class="absolute bottom-6 left-6 right-6 text-left text-white">
                         <span class="bg-primary/90 text-secondary text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded mb-2 inline-block">Temple</span>
-                        <h4 class="text-white text-xl font-bold">วัดสุวรรณาราม</h4>
+                        <h4 class="text-xl font-bold">วัดสุวรรณาราม</h4>
                     </div>
                 </div>
             </a>
-
             <a href="f.html" class="group block cursor-pointer">
                 <div class="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 shadow-xl">
                     <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCFvGC8euzgiCF0_lAWBoEpKlLoMuuiLXq-rwRhZ5LHL7Jdg0lr2BFZ6rtxPWgYdSoRR5rlkIoVOkkx_h3Ms7DoYUZo_E_KMZennirSZqx-5D-_5LF3eSN9MkjlwhCczbfNb1knHBClgP9mjsyo99rxsLLCBHmElGj9-Ut1Ndu3gpD0hytKrvKT0KMxy6iQjpa9cUsqKoCpfUhw5aNuaeMXjF7luQKL__x22M1L7hZYC5Z0e9IjRbhZccWt59t2O1W-UmtLAGQnjc"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-transparent opacity-60"></div>
-                    <div class="absolute bottom-6 left-6 right-6 text-left">
+                    <div class="absolute bottom-6 left-6 right-6 text-left text-white">
                         <span class="bg-primary/90 text-secondary text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded mb-2 inline-block">Craftsmanship</span>
-                        <h4 class="text-white text-xl font-bold">บ้านบุ (ขันลงหิน)</h4>
+                        <h4 class="text-xl font-bold">บ้านบุ (ขันลงหิน)</h4>
                     </div>
                 </div>
             </a>
-
             <a href="f.html" class="group block cursor-pointer">
                 <div class="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 shadow-xl">
                     <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCToBRHblHszmIKO7sui0m4k8D1QOeQrImG-kPd1hxi5sUGdxXOPciOn3JTM0EaSQHo9BgD_BmDlC8jd8aOFHv2PW-I7MrjmzncEwfEVI6VxJ1V8hrbMqcfhfzITaJmRXC4j5GOWprZEDkwMTivtPX3ehwAvDDlvdm_cgaTT1FY4SMqg4tzemDOzgyCARTqh0YtCRNK4f2Jk1_1jTsQT54-hlVrymrKW1qMXjmMWwYR9IRSOKiME-MuOfhlCSmSDijl3z8q7z7Gwuw"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-transparent opacity-60"></div>
-                    <div class="absolute bottom-6 left-6 right-6 text-left">
+                    <div class="absolute bottom-6 left-6 right-6 text-left text-white">
                         <span class="bg-primary/90 text-secondary text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded mb-2 inline-block">Museum</span>
-                        <h4 class="text-white text-xl font-bold">พิพิธภัณฑ์เรือพระราชพิธี</h4>
+                        <h4 class="text-xl font-bold">พิพิธภัณฑ์เรือพระราชพิธี</h4>
                     </div>
                 </div>
             </a>
-
             <a href="f.html" class="group block cursor-pointer">
                 <div class="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 shadow-xl">
                     <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAT3ztVMcOWNIAd3p7V2Yr-2ZkZzQI49hM-9fmfDFNJcXcGRZww6rweAWsDdOQxmH9ormymp4fslCMO-nPrffbUHkFmUs_gP-77wml4C9faTwdFyrmHXwA-Banvyc2D79pfFoMrT9fvBVJmM-68Akr9L1wCZtsCbPUbYJxC7TvEGtZi0GkCCW15zANalerSIswEbb7yXIc7xo5ueAE_6taKqGtRI94aFYlyVolx2q6egQ7B8kI45UyqXBtJPSvwx833oa97NHL3Qtk"/>
                     <div class="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-transparent opacity-60"></div>
-                    <div class="absolute bottom-6 left-6 right-6 text-left">
+                    <div class="absolute bottom-6 left-6 right-6 text-left text-white">
                         <span class="bg-primary/90 text-secondary text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded mb-2 inline-block">Community</span>
-                        <h4 class="text-white text-xl font-bold">ชุมชนตลาดไร้คาน</h4>
+                        <h4 class="text-xl font-bold">ชุมชนตลาดไร้คาน</h4>
                     </div>
                 </div>
-            </a>
-            </div>
             </a>
         </div>
     </div>
 </section>
 
 <footer class="bg-background-light dark:bg-background-dark border-t border-primary/20 pt-20 pb-10 px-6">
-    <div class="max-w-[1440px] mx-auto text-center">
-        <h2 class="text-secondary dark:text-white text-2xl font-bold mb-4">Thonburi Heritage</h2>
-        <p class="text-secondary/60 mb-8 max-w-lg mx-auto">โครงการอนุรักษ์และเผยแพร่มรดกทางวัฒนธรรมย่านธนบุรี เพื่อส่งต่อจิตวิญญาณแห่งสายน้ำสู่คนรุ่นหลัง</p>
+    <div class="max-w-[1440px] mx-auto text-center text-secondary dark:text-white">
+        <h2 class="text-2xl font-bold mb-4">Thonburi Heritage</h2>
+        <p class="opacity-60 mb-8 max-w-lg mx-auto">โครงการอนุรักษ์และเผยแพร่มรดกทางวัฒนธรรมย่านธนบุรี เพื่อส่งต่อจิตวิญญาณแห่งสายน้ำสู่คนรุ่นหลัง</p>
         <div class="flex justify-center gap-8 mb-8">
             <a href="index.html" class="hover:text-primary transition-colors">หน้าแรก</a>
             <a href="routes.html" class="hover:text-primary transition-colors">เส้นทาง</a>
             <a href="f.html" class="hover:text-primary transition-colors">แหล่งมรดก</a>
         </div>
-        <p class="text-secondary/40 text-sm">© 2026 Thonburi Heritage Project. All rights reserved.</p>
+        <p class="opacity-40 text-sm">© 2026 Thonburi Heritage Project. All rights reserved.</p>
     </div>
 </footer>
 
 <script>
-    // 2. JavaScript สำหรับควบคุม Smooth Page Transition
+    // 1. Page Transition (ฟังก์ชันเดิมน้องเป๊ะมาก)
     function activateTransition(url) {
         const loader = document.getElementById('page-loader');
-        loader.classList.add('active'); // เฟดขึ้นมาบัง
-        
-        setTimeout(() => {
-            window.location.href = url; // ไปหน้าใหม่
-        }, 400);
+        loader.classList.add('active');
+        setTimeout(() => { window.location.href = url; }, 400);
     }
-
-    // ดักจับทุกลิงก์ที่มีพิกัดไฟล์ภายในโปรเจกต์
     document.addEventListener('click', function(e) {
         const link = e.target.closest('a');
-        if (link) {
-            const href = link.getAttribute('href');
-            // ถ้าเป็นลิงก์ภายในโครงการและไม่ใช่เครื่องหมาย # หรือลิงก์ภายนอก
-            if (href && href !== '#' && !href.startsWith('http') && !link.target) {
-                e.preventDefault();
-                activateTransition(href);
-            }
+        if (link && link.getAttribute('href') && !link.getAttribute('href').startsWith('http') && link.getAttribute('href') !== '#') {
+            e.preventDefault();
+            activateTransition(link.getAttribute('href'));
         }
     });
+    window.addEventListener('pageshow', () => { document.getElementById('page-loader').classList.remove('active'); });
 
-    // เมื่อโหลดหน้าใหม่ ให้ Overlay หายไปอย่างนุ่มนวล
-    window.addEventListener('pageshow', () => {
-        const loader = document.getElementById('page-loader');
-        loader.classList.remove('active');
-    });
+    // 2. ปรับแก้ส่วน อ่านเรื่องราวฉบับเต็ม (Toggle Inline)
+    function toggleFullStory() {
+        const content = document.getElementById('full-story-content');
+        const text = document.getElementById('text-full-story');
+        const icon = document.getElementById('icon-full-story');
+
+        if (content.style.maxHeight && content.style.maxHeight !== "0px") {
+            content.style.maxHeight = "0px";
+            text.innerText = "อ่านเรื่องราวฉบับเต็ม";
+            icon.style.transform = "rotate(0deg)";
+        } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            text.innerText = "ปิดหน้าต่างเนื้อหา";
+            icon.style.transform = "rotate(90deg)";
+        }
+    }
+
+    // 3. ฟังก์ชัน toggleHistory (01-03 เดิมของน้อง)
+    function toggleHistory(id) {
+        const sections = ['ayutthaya', 'thonburi', 'rattanakosin'];
+        sections.forEach(sec => {
+            const targetContent = document.getElementById('content-' + sec);
+            const targetIcon = document.getElementById('icon-' + sec);
+            const textEl = document.getElementById('text-' + sec);
+            
+            if (sec === id) {
+                if (targetContent.style.maxHeight && targetContent.style.maxHeight !== "0px") {
+                    targetContent.style.maxHeight = "0px";
+                    targetIcon.innerText = 'add';
+                    targetIcon.style.transform = 'rotate(0deg)';
+                } else {
+                    targetContent.style.maxHeight = targetContent.scrollHeight + "px";
+                    targetIcon.innerText = 'close';
+                    targetIcon.style.transform = 'rotate(90deg)';
+                }
+            } else {
+                targetContent.style.maxHeight = "0px";
+                targetIcon.innerText = 'add';
+                targetIcon.style.transform = 'rotate(0deg)';
+            }
+        });
+    }
 </script>
 
 </body>
