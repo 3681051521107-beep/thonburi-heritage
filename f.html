@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Thonburi Heritage - รายละเอียดมรดกทางวัฒนธรรม</title>
+    <title>Thonburi Heritage - มรดกทางวัฒนธรรมมีชีวิต</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -15,9 +15,10 @@
                 extend: {
                     colors: {
                         "primary": "#ec5b13",
+                        "secondary": "#5D4037",
                         "background-light": "#f8f6f6",
-                        "background-dark": "#221610",
-                        "gold": "#d4af37",
+                        "background-dark": "#1a120f",
+                        "gold": "#C5A059",
                         "wood": "#5d4037",
                     },
                     fontFamily: {
@@ -29,138 +30,154 @@
     </script>
     <style>
         body { font-family: 'Noto Sans Thai', 'Public Sans', sans-serif; scroll-behavior: smooth; }
-        .hero-overlay { background: linear-gradient(to bottom, rgba(34, 22, 16, 0.1), rgba(34, 22, 16, 0.95)); }
+        .hero-overlay { background: linear-gradient(to top, rgba(26, 18, 15, 1) 0%, rgba(26, 18, 15, 0.4) 50%, rgba(26, 18, 15, 0.1) 100%); }
         .filter-btn.active {
             background-color: #ec5b13 !important;
             color: white !important;
             border-color: #ec5b13 !important;
-            box-shadow: 0 10px 15px -3px rgba(236, 91, 19, 0.3);
         }
-        
-        /* สไตล์ Page Loader ตามที่คุณต้องการ */
         #page-loader {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            pointer-events: none;
-            opacity: 1;
-            transition: opacity 0.5s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+            opacity: 1; transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; align-items: center; justify-content: center;
         }
         #page-loader.fade-out { opacity: 0; }
+        .content-transition { transition: all 0.5s ease-in-out; }
+        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 overflow-x-hidden">
 
-<div id="page-loader" class="bg-background-light pt-20 pb-10 px-6 text-center border-t border-primary/20">
-    <div class="flex flex-col items-center gap-4">
-        <span class="material-symbols-outlined text-primary text-6xl animate-bounce"></span>
-        <p class="text-secondary font-bold tracking-widest uppercase text-xs">กำลังสำรวจมรดก...</p>
+<div id="page-loader" class="bg-background-dark">
+    <div class="flex flex-col items-center gap-6">
+        <span class="material-symbols-outlined text-gold text-7xl animate-pulse"></span>
+        <div class="w-48 h-1 bg-white/10 rounded-full overflow-hidden">
+            <div class="w-1/2 h-full bg-primary animate-[shimmer_2s_infinite]"></div>
+        </div>
+        <p class="text-gold font-bold tracking-[0.3em] uppercase text-xs">กำลังสำรวจมรดก...</p>
     </div>
 </div>
 
-<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
-    <header class="flex items-center justify-between whitespace-nowrap border-b border-primary/20 px-6 md:px-20 py-4 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-50">
+<div class="relative flex min-h-screen w-full flex-col">
+    <header class="flex items-center justify-between border-b border-primary/10 px-6 md:px-20 py-5 bg-white/90 dark:bg-background-dark/95 backdrop-blur-md sticky top-0 z-50">
         <div class="flex items-center gap-8">
-            <div class="flex items-center gap-3 text-primary">
-                <span class="material-symbols-outlined text-3xl"></span>
-                <h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold tracking-tight">Cultural Routes</h2>
+            <div class="flex items-center gap-3 text-primary group cursor-pointer">
+                <span class="material-symbols-outlined text-3xl transition-transform group-hover:rotate-12"></span>
+                <h2 class="text-xl font-black tracking-tighter uppercase">Thonburi Heritage</h2>
             </div>
-            <nav class="hidden md:flex items-center gap-9">
-                <a class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors text-sm font-medium" href="index.html">หน้าแรก</a>
-                <a class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors text-sm font-medium" href="routes.html">แผนที่</a>
-                <a class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors text-sm font-medium" href="about.html">เกี่ยวกับเรา</a>
+            <nav class="hidden lg:flex items-center gap-10">
+                <a class="text-sm font-bold hover:text-primary transition-all uppercase tracking-widest" href="index.html">หน้าแรก</a>
+                <a class="text-sm font-bold hover:text-primary transition-all uppercase tracking-widest" href="routes.html">เส้นทางท่องเที่ยว</a>
+                <a class="text-sm font-bold hover:text-primary transition-all uppercase tracking-widest" href="about.html">เกี่ยวกับเรา</a>
             </nav>
         </div>
+        <button class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-full text-xs font-black shadow-xl transition-all active:scale-95">เข้าสู่ระบบแอดมิน</button>
     </header>
 
-    <main class="flex-1" id="main-content">
-        <section class="relative h-[65vh] min-h-[450px] w-full overflow-hidden">
-            <div id="hero-img" class="absolute inset-0 bg-cover bg-center transition-all duration-1000 scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBhtM-hqxa7kOPaOQYIKz8cVhTNOEXW66oRP8d7SOghQALnY_-SIyS4nmBThe-jzMnYL8A54RmipTVZvKu6GD_8UyDqa2Tyy7XbZaUy3ehKmCkZso5DUBCdP5Gk8yqVDOAlQ6K9uFD-Hxd7eHYdryKg2_CWZumv3CoSVhAnR6SIpoI8tTY_fmmbpgue5Fnqx3Qj4HzZyseZ3Tm4hFE6sYYBfoLiJbSuQNlpXB2hMt9oHEn7a8RgZjSDqHUC25xaNPQE-CLz3F-s9nA');"></div>
+    <main id="main-content" class="content-transition">
+        <section class="relative h-[85vh] w-full overflow-hidden">
+            <div id="hero-img" class="absolute inset-0 bg-cover bg-center scale-110 transition-transform duration-[2s]" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBhtM-hqxa7kOPaOQYIKz8cVhTNOEXW66oRP8d7SOghQALnY_-SIyS4nmBThe-jzMnYL8A54RmipTVZvKu6GD_8UyDqa2Tyy7XbZaUy3ehKmCkZso5DUBCdP5Gk8yqVDOAlQ6K9uFD-Hxd7eHYdryKg2_CWZumv3CoSVhAnR6SIpoI8tTY_fmmbpgue5Fnqx3Qj4HzZyseZ3Tm4hFE6sYYBfoLiJbSuQNlpXB2hMt9oHEn7a8RgZjSDqHUC25xaNPQE-CLz3F-s9nA');"></div>
             <div class="absolute inset-0 hero-overlay"></div>
-            <div class="relative h-full max-w-7xl mx-auto px-6 flex flex-col justify-end pb-16">
-                <nav class="flex items-center gap-2 text-gold mb-4 text-sm font-bold tracking-widest uppercase">
-                    <span>แหล่งมรดก</span>
-                    <span class="material-symbols-outlined text-xs">chevron_right</span>
-                    <span id="display-district" class="text-white/70">เขตธนบุรี</span>
-                </nav>
-                <h1 id="display-title" class="text-5xl md:text-7xl font-black text-white mb-4 tracking-tight">วัดสุวรรณาราม</h1>
-                <p id="display-subtitle" class="text-gold text-xl md:text-2xl font-medium max-w-2xl leading-relaxed">
-                    พระอารามหลวงชั้นโทที่ประดิษฐานภาพจิตรกรรมฝาผนังฝีมือปรมาจารย์แห่งกรุงรัตนโกสินทร์
+            <div class="relative h-full max-w-7xl mx-auto px-6 flex flex-col justify-end pb-24">
+                <div class="inline-flex items-center gap-3 bg-primary/20 backdrop-blur-md border border-primary/30 px-4 py-2 rounded-full w-fit mb-6">
+                    <span class="w-2 h-2 bg-primary rounded-full animate-ping"></span>
+                    <span id="display-district" class="text-primary text-xs font-black tracking-[0.2em] uppercase">เขตบางกอกน้อย</span>
+                </div>
+                <h1 id="display-title" class="text-6xl md:text-8xl font-black text-white mb-6 tracking-tighter leading-none">วัดสุวรรณาราม</h1>
+                <p id="display-subtitle" class="text-gold text-xl md:text-3xl font-light max-w-3xl leading-relaxed italic">
+                    "มรดกชิ้นเอกแห่งกรุงรัตนโกสินทร์ ประจักษ์พยานแห่งศิลปะช่างสิบหมู่ที่สมบูรณ์ที่สุด"
                 </p>
             </div>
         </section>
 
-        <div class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-3 gap-16">
-            <div class="lg:col-span-2 space-y-16">
-                <article>
-                    <h2 class="text-3xl font-black text-wood dark:text-gold border-b-2 border-primary/20 pb-4 mb-8">ประวัติและความสำคัญ</h2>
-                    <p id="display-desc" class="text-lg leading-relaxed text-slate-700 dark:text-slate-300 first-letter:text-4xl first-letter:font-bold first-letter:text-primary first-letter:mr-2">
-                        วัดสุวรรณารามราชวรวิหาร หรือ "วัดทอง" สร้างขึ้นในสมัยอยุธยาและได้รับการสถาปนาใหม่ในสมัยรัชกาลที่ 1 โดยมีจุดเด่นคือภาพทศชาติชาดกในพระอุโบสถที่มีความงดงามระดับศิลปะชั้นยอด
-                    </p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-12">
-                        <div class="group relative rounded-3xl overflow-hidden shadow-2xl h-64 border-2 border-white dark:border-slate-700">
-                            <img id="display-sub-1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTbR-cSM5ofX0aiY8iB3iGDkx4MB0mJxAF1a6OV9ygBz8cAUVDqyLveRc8HdX0ycGVvnLMwzg7msc6QSwmbt4X1Q3mXVi7clcoVV218O9uiH-1KXL8R7l3OTBzPrybpU03mVzJLXijKQoZf9lObSgua6prU0En-cy2GQ6zs0f2YkB1auzaTyxjPCcm8W_8kRvhbWJ2yNAnWfx9a5II1iOvFmZvrBW55eMF7HEYinZPu8OYzcD2Dp3_mzv9Ysx7TYNNhnXhyoA5KzQ"/>
-                            <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all"></div>
+        <section class="max-w-7xl mx-auto px-6 py-24">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-20">
+                <div class="lg:col-span-8 space-y-20">
+                    <article class="relative">
+                        <div class="absolute -left-10 top-0 w-1 h-32 bg-primary/30 hidden md:block"></div>
+                        <h2 class="text-4xl font-black text-secondary dark:text-gold mb-10 flex items-center gap-4">
+                            <span class="text-primary/20">01</span> ประวัติและความสำคัญ
+                        </h2>
+                        <div id="display-desc" class="text-xl leading-[1.8] text-slate-600 dark:text-slate-300 space-y-6 text-justify">
+                            <p>วัดสุวรรณารามราชวรวิหาร หรือที่ชาวบ้านเรียกกันติดปากว่า "วัดทอง" เป็นพระอารามหลวงชั้นโทที่มีประวัติศาสตร์ยาวนานย้อนไปถึงสมัยกรุงศรีอยุธยา เดิมเป็นเพียงวัดราษฎร์ จนกระทั่งในสมัยรัชกาลที่ 1 แห่งกรุงรัตนโกสินทร์ ทรงพระกรุณาโปรดเกล้าฯ ให้รื้อวัดเดิมแล้วสถาปนาขึ้นใหม่ทั้งหมด</p>
+                            <p>ความโดดเด่นสูงสุดที่ทำให้นักประวัติศาสตร์ศิลป์ทั่วโลกต้องมาเยือน คือ **"ภาพจิตรกรรมฝาผนัง"** ภายในพระอุโบสถ ซึ่งเป็นฝีมือของปรมาจารย์ยุคต้นรัตนโกสินทร์อย่าง หลวงวิจิตรเจษฎา (ทองอยู่) และหลวงเสนีย์บริรักษ์ (คงแป๊ะ) ผู้ประชันฝีมือเขียนภาพทศชาติชาดกไว้อย่างวิจิตรบรรจง</p>
                         </div>
-                        <div class="group relative rounded-3xl overflow-hidden shadow-2xl h-64 border-2 border-white dark:border-slate-700">
-                            <img id="display-sub-2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2DHC48mQnVoRzF40wvAaEyMNCGXqDkLSW4NXw3htbnFCIB4eSLpdea0dUfByiGWpdvjHCaRTxQWn_pZPtTquyZk_NeSGrvux9upP-tqCZWfd3MGwcDHWUvCyjofjOzDG-EHflVRqYktMlOmY1OdxfJVIzPsfZa6l6DD3gJXpAj5uW0VdmYELzl2aaNZwqD2uYKYnVNB85oBsI8mjcMynzF5IIdKdBDLTTRaeNkLRFqGHZWMb3bcfLadG7d32FhlBvPXFa4Vp4ZZA"/>
-                            <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all"></div>
-                        </div>
-                    </div>
-                </article>
+                    </article>
 
-                <div class="bg-white dark:bg-slate-800 p-8 rounded-[2rem] border border-primary/10 shadow-xl flex flex-col md:flex-row gap-8 items-center">
-                    <div class="flex-1">
-                        <div class="flex items-center gap-3 text-primary mb-4">
-                            <span class="material-symbols-outlined font-bold">directions_boat</span>
-                            <h3 class="font-bold text-xl">แนะนำการเดินทาง</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="group relative rounded-[2rem] overflow-hidden aspect-video shadow-2xl">
+                            <img id="display-sub-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTbR-cSM5ofX0aiY8iB3iGDkx4MB0mJxAF1a6OV9ygBz8cAUVDqyLveRc8HdX0ycGVvnLMwzg7msc6QSwmbt4X1Q3mXVi7clcoVV218O9uiH-1KXL8R7l3OTBzPrybpU03mVzJLXijKQoZf9lObSgua6prU0En-cy2GQ6zs0f2YkB1auzaTyxjPCcm8W_8kRvhbWJ2yNAnWfx9a5II1iOvFmZvrBW55eMF7HEYinZPu8OYzcD2Dp3_mzv9Ysx7TYNNhnXhyoA5KzQ" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all p-8 flex flex-col justify-end text-white">
+                                <p class="font-bold">มุมมองจากริมคลอง</p>
+                                <p class="opacity-60 text-sm">วิถีชีวิตดั้งเดิมที่ยังคงอยู่รอบเขตวัด</p>
+                            </div>
                         </div>
-                        <p id="display-nav" class="text-slate-600 dark:text-slate-400">ล่องเรือผ่านคลองบางกอกน้อยสัมผัสวิถีชีวิตดั้งเดิม...</p>
+                        <div class="group relative rounded-[2rem] overflow-hidden aspect-video shadow-2xl">
+                            <img id="display-sub-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2DHC48mQnVoRzF40wvAaEyMNCGXqDkLSW4NXw3htbnFCIB4eSLpdea0dUfByiGWpdvjHCaRTxQWn_pZPtTquyZk_NeSGrvux9upP-tqCZWfd3MGwcDHWUvCyjofjOzDG-EHflVRqYktMlOmY1OdxfJVIzPsfZa6l6DD3gJXpAj5uW0VdmYELzl2aaNZwqD2uYKYnVNB85oBsI8mjcMynzF5IIdKdBDLTTRaeNkLRFqGHZWMb3bcfLadG7d32FhlBvPXFa4Vp4ZZA" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all p-8 flex flex-col justify-end text-white">
+                                <p class="font-bold">รายละเอียดจิตรกรรม</p>
+                                <p class="opacity-60 text-sm">การตัดเส้นและลงสีโบราณที่หาดูได้ยาก</p>
+                            </div>
+                        </div>
                     </div>
-                    <button id="map-direction-btn" class="bg-wood dark:bg-primary text-white px-10 py-4 rounded-2xl font-black shadow-lg hover:-translate-y-1 transition-all flex items-center gap-2">
-                        <span class="material-symbols-outlined">map</span> เปิดแผนที่นำทาง
-                    </button>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="p-8 rounded-3xl bg-white dark:bg-slate-800 border border-primary/5 shadow-xl">
+                            <span class="material-symbols-outlined text-primary mb-4 text-4xl"></span>
+                            <h4 class="font-bold mb-2">ต้องดู</h4>
+                            <p class="text-sm opacity-60 italic">ภาพเขียนชูชกและมหาเวสสันดรชาดก</p>
+                        </div>
+                        <div class="p-8 rounded-3xl bg-white dark:bg-slate-800 border border-primary/5 shadow-xl">
+                            <span class="material-symbols-outlined text-primary mb-4 text-4xl"></span>
+                            <h4 class="font-bold mb-2">เวลาที่เหมาะสม</h4>
+                            <p class="text-sm opacity-60 italic">08.00 - 17.00 น. (ทุกวัน)</p>
+                        </div>
+                        <div class="p-8 rounded-3xl bg-white dark:bg-slate-800 border border-primary/5 shadow-xl">
+                            <span class="material-symbols-outlined text-primary mb-4 text-4xl"></span>
+                            <h4 class="font-bold mb-2">ข้อแนะนำ</h4>
+                            <p class="text-sm opacity-60 italic">งดใช้แฟลชภายอุโบสถเพื่อถนอมภาพเขียน</p>
+                        </div>
+                    </div>
                 </div>
+
+                <aside class="lg:col-span-4 space-y-8">
+                    <div class="bg-background-dark text-white p-10 rounded-[3rem] shadow-2xl sticky top-28 border border-gold/10">
+                        <h3 class="text-2xl font-black mb-10 text-gold flex items-center gap-3 italic">
+                            <span class="w-8 h-[2px] bg-gold"></span> ข้อมูลสถานที่
+                        </h3>
+                        <div class="space-y-10">
+                            <div>
+                                <span class="text-[10px] uppercase text-gold font-black tracking-[0.3em] block mb-2 opacity-50">รหัสอ้างอิง</span>
+                                <span id="display-id" class="font-mono text-xl">wat-suwan</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] uppercase text-gold font-black tracking-[0.3em] block mb-2 opacity-50">ยุคสมัยประวัติศาสตร์</span>
+                                <span id="display-era" class="text-xl">อยุธยา / รัตนโกสินทร์</span>
+                            </div>
+                            <div class="p-6 rounded-2xl border border-white/5 glass-card">
+                                <span class="text-[10px] uppercase text-gold font-black tracking-[0.3em] block mb-3 opacity-50">การเดินทาง</span>
+                                <p id="display-nav" class="text-sm leading-relaxed text-white/80">ล่องเรือผ่านคลองบางกอกน้อย จากท่าเรือปิ่นเกล้า หรือใช้บริการรถโดยสารจากสถานีรถไฟธนบุรี</p>
+                            </div>
+                            <button id="map-direction-btn" onclick="goToRoute('wat-suwan')" class="w-full bg-primary hover:bg-white hover:text-primary py-5 rounded-2xl font-black transition-all flex items-center justify-center gap-3 shadow-lg group">
+                                <span class="material-symbols-outlined group-hover:animate-bounce">map</span> ขอเส้นทางนำทาง
+                            </button>
+                        </div>
+                    </div>
+                </aside>
             </div>
+        </section>
 
-            <aside class="space-y-8">
-                <div class="bg-white dark:bg-slate-800 p-8 rounded-[2rem] shadow-2xl border border-primary/10 sticky top-28">
-                    <h3 class="text-xl font-black mb-8 text-primary flex items-center gap-2">
-                        <span class="material-symbols-outlined">analytics</span> ข้อมูลจำเพาะ
-                    </h3>
-                    <div class="space-y-6">
-                        <div>
-                            <span class="text-[10px] uppercase text-slate-400 font-black tracking-widest block mb-1">Site ID</span>
-                            <span id="display-id" class="font-mono text-secondary dark:text-slate-200 text-lg">attr_suwan_001</span>
-                        </div>
-                        <div>
-                            <span class="text-[10px] uppercase text-slate-400 font-black tracking-widest block mb-1">ยุคสมัย</span>
-                            <span id="display-era" class="text-secondary dark:text-slate-200 text-lg">อยุธยา / รัตนโกสินทร์</span>
-                        </div>
-                        <div>
-                            <span class="text-[10px] uppercase text-slate-400 font-black tracking-widest block mb-1">พิกัด</span>
-                            <span id="display-coords" class="text-secondary dark:text-slate-200 text-sm">13.7611, 100.4789</span>
-                        </div>
-                    </div>
-                </div>
-            </aside>
-        </div>
-
-        <section class="bg-slate-100 dark:bg-slate-900/50 py-24 border-t border-primary/10">
+        <section class="bg-slate-100 dark:bg-slate-900/50 py-28 border-t border-primary/10">
             <div class="max-w-7xl mx-auto px-6">
-                <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8 text-center md:text-left">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8 text-center md:text-left">
                     <div>
-                        <h2 class="text-4xl font-black text-wood dark:text-gold mb-4">สำรวจแหล่งมรดกอื่นๆ</h2>
-                        <p class="text-slate-500 max-w-lg">ค้นพบมรดกทางวัฒนธรรมและประวัติศาสตร์ที่ทรงคุณค่าในย่านธนบุรี</p>
+                        <h2 class="text-5xl font-black text-secondary dark:text-gold mb-4 tracking-tighter uppercase">ค้นพบเพิ่มเติม</h2>
+                        <p class="text-slate-500 font-medium">สัมผัสจิตวิญญาณแห่งธนบุรีผ่านแหล่งมรดกอื่นๆ</p>
                     </div>
-                    <div class="flex flex-wrap justify-center gap-3" id="filter-group">
-                        <button onclick="filterSites('all')" class="filter-btn active px-8 py-2.5 rounded-full text-xs font-black border-2 border-primary transition-all uppercase tracking-widest">ทั้งหมด</button>
-                        <button onclick="filterSites('temple')" class="filter-btn px-8 py-2.5 rounded-full text-xs font-black border-2 border-primary/10 hover:border-primary transition-all uppercase tracking-widest text-slate-500">วัด</button>
-                        <button onclick="filterSites('community')" class="filter-btn px-8 py-2.5 rounded-full text-xs font-black border-2 border-primary/10 hover:border-primary transition-all uppercase tracking-widest text-slate-500">ชุมชน</button>
+                    <div class="flex flex-wrap justify-center gap-4" id="filter-group">
+                        <button onclick="filterSites('all')" class="filter-btn active px-10 py-3 rounded-full text-[10px] font-black border-2 border-primary/20 transition-all uppercase tracking-[0.2em]">ทั้งหมด</button>
+                        <button onclick="filterSites('temple')" class="filter-btn px-10 py-3 rounded-full text-[10px] font-black border-2 border-primary/20 transition-all uppercase tracking-[0.2em] text-slate-500">วัด</button>
+                        <button onclick="filterSites('community')" class="filter-btn px-10 py-3 rounded-full text-[10px] font-black border-2 border-primary/20 transition-all uppercase tracking-[0.2em] text-slate-500">ชุมชน</button>
                     </div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" id="heritage-grid"></div>
@@ -168,46 +185,68 @@
         </section>
     </main>
 
-    <footer class="bg-wood dark:bg-background-dark text-white py-16 border-t border-gold/20">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-3xl font-black mb-4">Cultural Routes</h2>
-            <p class="text-gold/60 text-sm font-light">โครงการฐานข้อมูลมรดกทางวัฒนธรรมย่านธนบุรี © 2026</p>
+    <footer class="bg-background-dark text-white py-20 border-t border-gold/10">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="text-center md:text-left">
+                <h2 class="text-3xl font-black tracking-tighter uppercase mb-2">Thonburi Heritage</h2>
+                <p class="text-gold font-medium opacity-50">โครงการฐานข้อมูลมรดกทางวัฒนธรรมย่านธนบุรี © 2026</p>
+            </div>
+            <div class="flex gap-10 text-xs font-black tracking-widest opacity-60">
+                <a href="#" class="hover:text-primary transition-colors">FACEBOOK</a>
+                <a href="#" class="hover:text-primary transition-colors">INSTAGRAM</a>
+                <a href="#" class="hover:text-primary transition-colors">CONTACT US</a>
+            </div>
         </div>
     </footer>
 </div>
 
 <script>
-    // Database ข้อมูล (ห้ามขาด)
+    // Database ข้อมูล (ปรับ ID ให้ตรงกันเพื่อใช้กับหน้าแผนที่)
     const heritageDatabase = {
         'wat-suwan': {
-            title: "วัดสุวรรณาราม", subtitle: "พระอารามหลวงชั้นโทที่ประดิษฐานภาพจิตรกรรมฝาผนังฝีมือปรมาจารย์แห่งกรุงรัตนโกสินทร์",
-            desc: "วัดโบราณสมัยอยุธยาเดิมชื่อ วัดทอง ต่อมาในสมัยรัชกาลที่ 1 ทรงบูรณปฏิสังขรณ์ใหม่ จุดเด่นคือภาพทศชาติชาดกในพระอุโบสถที่เป็นประจักษ์พยานแห่งยุคทองของศิลปะไทย",
-            nav: "ใช้เรือหางยาวล่องผ่านคลองบางกอกน้อย จากท่าเรือปิ่นเกล้า หรือใช้บริการรถโดยสารจากสถานีรถไฟธนบุรี",
-            id: "attr_suwan_001", era: "อยุธยาตอนปลาย / รัตนโกสินทร์", coords: "13.7611, 100.4789",
+            title: "วัดสุวรรณาราม", district: "เขตบางกอกน้อย",
+            subtitle: "พระอารามหลวงชั้นโทที่ประดิษฐานภาพจิตรกรรมฝาผนังฝีมือปรมาจารย์แห่งกรุงรัตนโกสินทร์",
+            desc: "<p>วัดสุวรรณาราม หรือ 'วัดทอง' เป็นวัดโบราณตั้งแต่สมัยอยุธยา แต่ความโดดเด่นที่เป็นที่กล่าวขานระดับประเทศคือ 'ภาพจิตรกรรมฝาผนัง' ฝีมือหลวงวิจิตรเจษฎา (ทองอยู่) และหลวงเสนีย์บริรักษ์ (คงแป๊ะ) ผู้ประชันฝีมือกันอย่างวิจิตรบรรจงที่สุด</p>",
+            nav: "1. ทางเรือ: ลงเรือที่ท่าวัดสุวรรณาราม 2. รถไฟ: ลงสถานีธนบุรีแล้วเดินเข้าซอยศาลาน้ำเย็น 3. รถส่วนตัว: มีที่จอดรถภายในวัด",
+            id: "wat-suwan", era: "อยุธยาตอนปลาย / รัตนโกสินทร์", 
             imgMain: "https://lh3.googleusercontent.com/aida-public/AB6AXuBhtM-hqxa7kOPaOQYIKz8cVhTNOEXW66oRP8d7SOghQALnY_-SIyS4nmBThe-jzMnYL8A54RmipTVZvKu6GD_8UyDqa2Tyy7XbZaUy3ehKmCkZso5DUBCdP5Gk8yqVDOAlQ6K9uFD-Hxd7eHYdryKg2_CWZumv3CoSVhAnR6SIpoI8tTY_fmmbpgue5Fnqx3Qj4HzZyseZ3Tm4hFE6sYYBfoLiJbSuQNlpXB2hMt9oHEn7a8RgZjSDqHUC25xaNPQE-CLz3F-s9nA", imgSubs: ["https://lh3.googleusercontent.com/aida-public/AB6AXuCTbR-cSM5ofX0aiY8iB3iGDkx4MB0mJxAF1a6OV9ygBz8cAUVDqyLveRc8HdX0ycGVvnLMwzg7msc6QSwmbt4X1Q3mXVi7clcoVV218O9uiH-1KXL8R7l3OTBzPrybpU03mVzJLXijKQoZf9lObSgua6prU0En-cy2GQ6zs0f2YkB1auzaTyxjPCcm8W_8kRvhbWJ2yNAnWfx9a5II1iOvFmZvrBW55eMF7HEYinZPu8OYzcD2Dp3_mzv9Ysx7TYNNhnXhyoA5KzQ", "https://lh3.googleusercontent.com/aida-public/AB6AXuC2DHC48mQnVoRzF40wvAaEyMNCGXqDkLSW4NXw3htbnFCIB4eSLpdea0dUfByiGWpdvjHCaRTxQWn_pZPtTquyZk_NeSGrvux9upP-tqCZWfd3MGwcDHWUvCyjofjOzDG-EHflVRqYktMlOmY1OdxfJVIzPsfZa6l6DD3gJXpAj5uW0VdmYELzl2aaNZwqD2uYKYnVNB85oBsI8mjcMynzF5IIdKdBDLTTRaeNkLRFqGHZWMb3bcfLadG7d32FhlBvPXFa4Vp4ZZA"]
         },
         'wat-rakhang': {
-            title: "วัดระฆังโฆสิตาราม", subtitle: "วัดสำคัญแห่งยุคธนบุรีและรัตนโกสินทร์ ที่ประทับของสมเด็จพระพุฒาจารย์ (โต พรหมรังสี)",
-            desc: "เป็นวัดโบราณสร้างมาตั้งแต่สมัยอยุธยา เดิมชื่อวัดบางหว้าใหญ่ รัชกาลที่ 1 ได้ทรงบูรณปฏิสังขรณ์และพบระฆังโบราณ จึงพระราชทานนามใหม่ว่าวัดระฆัง",
-            nav: "ข้ามฟากจากท่าช้างมายังท่าวังหลัง หรือลงเรือด่วนเจ้าพระยาที่ท่าวังหลังแล้วเดินต่อมายังวัด",
-            id: "attr_rakhang_002", era: "อยุธยา / ธนบุรี / รัตนโกสินทร์", coords: "13.7531, 100.4855",
+            title: "วัดระฆังโฆสิตาราม", district: "เขตธนบุรี",
+            subtitle: "วัดสำคัญแห่งยุคธนบุรีและรัตนโกสินทร์ ที่ประทับของสมเด็จพระพุฒาจารย์ (โต พรหมรังสี)",
+            desc: "<p>วัดระฆังฯ เดิมชื่อ 'วัดบางหว้าใหญ่' สร้างขึ้นตั้งแต่สมัยอยุธยา ต่อมาในสมัยธนบุรีและรัตนโกสินทร์ได้กลายเป็นวัดสำคัญระดับพระอารามหลวงชั้นเอก</p>",
+            nav: "นั่งเรือข้ามฟากจากท่าช้าง (สนามหลวง) มายังท่าวัดระฆัง หรือนั่งเรือด่วนเจ้าพระยามาลงที่ท่าวังหลัง",
+            id: "wat-rakhang", era: "อยุธยา / ธนบุรี / รัตนโกสินทร์",
             imgMain: "https://lh3.googleusercontent.com/aida-public/AB6AXuAO2bvq4j3pKa85BGgb0iom1LxPt0D4VhQHD9CPCI97O3jHk5Jpz1BctRofpjW2iVPxAsGk-wrLw1V7e1E8Y86GDcriJO92BefJ5YxpAixvfOMu0cs5yfqDaOLmwzBRR0pnUbKYX1iwVue1EkWn9ly9YWv_DxaVDu3eJpiZ2_AEcWWXIlpPIgdmtDx1rzTw5AFm5QCNzV7jjJnJKKIJYavEMCpbIXTB7qwCQdtCe00V8MYmh_8gOSWDjrdAM0Es9d8-aYs_ID-laPM", imgSubs: ["https://lh3.googleusercontent.com/aida-public/AB6AXuD0KgUgSuHVgQreEFvIzGv0FFfQlcAE61YG2iYdiUhkdvDL48aKuvf19E4OjOzPTwB9hx3MJvYyDJjpb79-dPSkkC18ADu2k31_qie3uyvZqGVOLQ7TpvQKf8o-ubYGPShteVWF-W-pNIdsIxnK_zzUUf0IXDEoPTG8bSNY_PY_75Xjb5FkyML68htWkYWBeD0eGdT-hi6FcCEAUDeysNI0iBvkol0LS0LGLaIm3F4oLdN8C4rswAo0BaeGPQ0DLAcmq_HkKWg9e74", "https://lh3.googleusercontent.com/aida-public/AB6AXuC1bUKUTZQUbkgGD2ko8-YowRA7jHdCWfEBfyB_zMwhNofM0n3kbzVMklMJKnV0JbaX-KsuYbMrDiGKh30IxRGheP0_8ArEUAd_1jzfQf2Oa7MgdgCg4mulF4KIwGfR6WPw3Crgc-Lx4BLkh53izWD-b04czknBtMZC87hAgUyM1Iz9apyAZb7HbJqk07_FXbn5hYaBDrM7A-6djjADzitHKXZEgr_CZQ9vzR9FjvRBDgQNw283-RQNMksj0MeqxnF1jBZWdl_rhg8"]
         },
         'baan-bu': {
-            title: "ชุมชนบ้านบุ", subtitle: "แหล่งผลิตเครื่องขันลงหินแห่งสุดท้ายที่ยังหลงเหลืออยู่ในกรุงเทพฯ",
-            desc: "ชุมชนช่างหัตถกรรมที่สืบทอดภูมิปัญญาการทำขันลงหินมานานกว่า 200 ปี เป็นแหล่งประวัติศาสตร์ที่มีชีวิตริมคลองบางกอกน้อย",
-            nav: "ตั้งอยู่ใกล้กับสถานีรถไฟธนบุรี สามารถเดินเท้าเข้าสู่ชุมชนได้ หรือนั่งเรือหางยาวมาลงที่ท่าเรือชุมชน",
-            id: "attr_baanbu_003", era: "รัตนโกสินทร์ตอนต้น", coords: "13.7580, 100.4795",
+            title: "ชุมชนบ้านบุ", district: "เขตบางกอกน้อย",
+            subtitle: "แหล่งผลิตเครื่องขันลงหินแห่งสุดท้ายที่ยังหลงเหลืออยู่ในกรุงเทพฯ",
+            desc: "<p>ชุมชนบ้านบุคือกลุ่มช่างฝีมือโบราณที่อพยพมาจากอยุธยาเมื่อครั้งกรุงแตก สั่งสมภูมิปัญญา 'การทำขันลงหิน' หรือเครื่องทองเหลืองขัดเงาที่มีเอกลักษณ์เฉพาะตัว</p>",
+            nav: "ตั้งอยู่ใกล้กับสถานีรถไฟธนบุรี สามารถเดินเท้าเข้าสู่ชุมชนได้ หรือนั่งเรือจากท่าเรือศิริราช",
+            id: "baan-bu", era: "รัตนโกสินทร์ตอนต้น",
             imgMain: "https://lh3.googleusercontent.com/aida-public/AB6AXuCCFvGC8euzgiCF0_lAWBoEpKlLoMuuiLXq-rwRhZ5LHL7Jdg0lr2BFZ6rtxPWgYdSoRR5rlkIoVOkkx_h3Ms7DoYUZo_E_KMZennirSZqx-5D-_5LF3eSN9MkjlwhCczbfNb1knHBClgP9mjsyo99rxsLLCBHmElGj9-Ut1Ndu3gpD0hytKrvKT0KMxy6iQjpa9cUsqKoCpfUhw5aNuaeMXjF7luQKL__x22M1L7hZYC5Z0e9IjRbhZccWt59t2O1W-UmtLAGQnjc", imgSubs: ["https://lh3.googleusercontent.com/aida-public/AB6AXuDsEHarI1qFlFgMlrWT7V0vviDTGc1CZ3SkCpKALZNvH93gaai6Tj3o8M8g_0Vym_ADTkbx7s4E7t8kqGRT3DoLUe5N5YRAQsx_soQjmyB79LnAx1J6VAJSRFndqZPRKMNnHab7N9SzUaUiWyE9sbkTwEpFbsY6ygfGcA0ekS9vAhnNVPSNw2gYmNRjpr59DNEkk_OUGhdpKu3GqUobNzpcK6PVde52bScjSpXT8FqGtzCz5joMpcr7z6GSyPMBem32VtBpaY7K4Ng", "https://lh3.googleusercontent.com/aida-public/AB6AXuD7mylRWDNku66D3x8zItT1NmBmG6JqGe55RdoloZcw4XP8az5yaKGBBZvlPH4tPYAMQpWiI99soZruJ91yYBtn8560bseENFOFZ_O0jiLYjVb7Lamuv9IfhgBU9hreE5BaD0YGIpadPiMrcstNSSwqmSCAdcMbz-8Cu1bSjUSs1dotT2zTv0JhHXlbS-c9xk_zpt6nbgcOcMs5IyI9JKrgB3Y6OQ1wbdf62JV8-66k4tvqbYiZ5ECvq1c-3oI-XksjuykKndBtRzY"]
         },
         'wat-arun': {
-            title: "วัดอรุณราชวราราม", subtitle: "พระปรางค์ริมน้ำเจ้าพระยาสัญลักษณ์แห่งความรุ่งโรจน์ของกรุงธนบุรี",
-            desc: "วัดประจำรัชกาลที่ 2 โดดเด่นด้วยองค์พระปรางค์ที่ประดับด้วยกระเบื้องเคลือบสีโบราณ เป็นจุดหมายหลักที่สะท้อนศิลปะยุคต้นรัตนโกสินทร์ได้อย่างชัดเจน",
-            nav: "นั่งเรือข้ามฟากจากท่าเตียน หรือลงเรือด่วนเจ้าพระยาที่ท่าเรือวัดอรุณ",
-            id: "attr_arun_004", era: "อยุธยา / ธนบุรี", coords: "13.7437, 100.4889",
+            title: "วัดอรุณราชวราราม", district: "เขตธนบุรี",
+            subtitle: "พระปรางค์ริมน้ำเจ้าพระยาสัญลักษณ์แห่งความรุ่งโรจน์ของกรุงธนบุรี",
+            desc: "<p>วัดอรุณฯ หรือวัดแจ้ง เป็นวัดโบราณสมัยอยุธยา และเป็นวัดประจำพระราชวังเดิมของสมเด็จพระเจ้าตากสินมหาราช</p>",
+            nav: "นั่งเรือข้ามฟากจากท่าเตียนมายังวัดอรุณ หรือนั่งเรือด่วนเจ้าพระยาลงที่ท่าเรือวัดอรุณโดยตรง",
+            id: "wat-arun", era: "อยุธยา / ธนบุรี",
             imgMain: "https://lh3.googleusercontent.com/aida-public/AB6AXuDTBzZY7TMbpG_fDacNYnVKTm2sTWqvH2U2QT8PyeW_C5WobACZi7rfIG5AnusTcrc3GNWWCrViecdwhSSrbc0j6X7nJsAVayLiL5jQknWyvayKAj_UgXbDrtGCNOOPMs9km1qZt_942ulyxZIzdPBcRGb6HaTjOuuxY6j_cVGMGAVZ5ESz8T3tOx0Yhjl_S5gUeaeeImZAgSzYzu-kDATZLwQd-tClOycx6QWsc-N913Cn_fiMNFn5l4kBek-jt30UfQGLNeTwl3M", imgSubs: ["https://lh3.googleusercontent.com/aida-public/AB6AXuB9a9KC1TQhds_nJu6sfYZTZREeV5h1YVA1V7g_yp44Vec-eSmBoe0iQVP8wAtReVdia-Uym0lAsR0LbXyEJoNoXEdAYdb1AYvyv9iCXwfbeJ-L11_aULzu6tbjsGkM2LB_4Shzhyn9qib6p6HHX_coDJx1RlnKFgH6J-dqFMbRhN9lMybIlm26B3SQdZIKpjU0DcVio3-Hx4_nseaMuKsAEKlnmUG3jeXyrmGipwLrj6hj1353Wg6osMPsWKwiGQvNQWaoqJzIHAk", "https://lh3.googleusercontent.com/aida-public/AB6AXuDdGv7n4kfigZczZrBK2FjmLYgqdjD_u6B3MYKUfEr97yXEytDqFl678TxdeqDMIB7MN5ItE-9PZJWN2e4qix_CuHl7AlEB6hjoygatovv-Z4yoauEatvGynK2VakyheEz5jBrOKwHZg-i10GRawDW32HdbjEkmIWVdnK_KR7nRW885kMV3ZSbIRrwd6_S7MfHuqi-GDLgKNPFp4LsEslonPN4ea7cnokovng25408SXezSdmKrUQz0py1O53Sur_eBYOPaOKl3iHY"]
         }
     };
+
+    // ฟังก์ชันส่งตัวแปร ID ไปหน้าเส้นทาง
+    function goToRoute(key) {
+        const loader = document.getElementById('page-loader');
+        loader.classList.remove('fade-out'); // แสดง loader
+        
+        setTimeout(() => {
+            // ส่ง Parameter ไปยังหน้า routes.html
+            window.location.href = `routes.html?id=${key}`;
+        }, 600);
+    }
 
     function changeContent(key) {
         const data = heritageDatabase[key];
@@ -215,50 +254,52 @@
 
         const main = document.getElementById('main-content');
         main.style.opacity = '0';
+        main.style.transform = 'translateY(20px)';
         
         setTimeout(() => {
             document.getElementById('display-title').innerText = data.title;
+            document.getElementById('display-district').innerText = data.district;
             document.getElementById('display-subtitle').innerText = data.subtitle;
-            document.getElementById('display-desc').innerText = data.desc;
+            document.getElementById('display-desc').innerHTML = data.desc;
             document.getElementById('display-nav').innerText = data.nav;
             document.getElementById('display-id').innerText = data.id;
             document.getElementById('display-era').innerText = data.era;
-            document.getElementById('display-coords').innerText = data.coords;
             document.getElementById('hero-img').style.backgroundImage = `url('${data.imgMain}')`;
             document.getElementById('display-sub-1').src = data.imgSubs[0];
             document.getElementById('display-sub-2').src = data.imgSubs[1];
             
-            document.getElementById('map-direction-btn').onclick = () => window.open(`http://googleusercontent.com/maps.google.com/15{data.coords}`);
+            // อัปเดตฟังก์ชันปุ่มขอเส้นทางให้เป็น ID ปัจจุบัน
+            document.getElementById('map-direction-btn').setAttribute('onclick', `goToRoute('${key}')`);
             
             main.style.opacity = '1';
+            main.style.transform = 'translateY(0)';
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 400);
+        }, 600);
     }
 
     const cardData = [
-        { key: 'wat-suwan', type: 'temple', title: 'วัดสุวรรณาราม', dist: 'Current', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBhtM-hqxa7kOPaOQYIKz8cVhTNOEXW66oRP8d7SOghQALnY_-SIyS4nmBThe-jzMnYL8A54RmipTVZvKu6GD_8UyDqa2Tyy7XbZaUy3ehKmCkZso5DUBCdP5Gk8yqVDOAlQ6K9uFD-Hxd7eHYdryKg2_CWZumv3CoSVhAnR6SIpoI8tTY_fmmbpgue5Fnqx3Qj4HzZyseZ3Tm4hFE6sYYBfoLiJbSuQNlpXB2hMt9oHEn7a8RgZjSDqHUC25xaNPQE-CLz3F-s9nA' },
-        { key: 'wat-rakhang', type: 'temple', title: 'วัดระฆัง', dist: '0.8 กม.', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAO2bvq4j3pKa85BGgb0iom1LxPt0D4VhQHD9CPCI97O3jHk5Jpz1BctRofpjW2iVPxAsGk-wrLw1V7e1E8Y86GDcriJO92BefJ5YxpAixvfOMu0cs5yfqDaOLmwzBRR0pnUbKYX1iwVue1EkWn9ly9YWv_DxaVDu3eJpiZ2_AEcWWXIlpPIgdmtDx1rzTw5AFm5QCNzV7jjJnJKKIJYavEMCpbIXTB7qwCQdtCe00V8MYmh_8gOSWDjrdAM0Es9d8-aYs_ID-laPM' },
-        { key: 'baan-bu', type: 'community', title: 'ชุมชนบ้านบุ', dist: '0.5 กม.', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCCFvGC8euzgiCF0_lAWBoEpKlLoMuuiLXq-rwRhZ5LHL7Jdg0lr2BFZ6rtxPWgYdSoRR5rlkIoVOkkx_h3Ms7DoYUZo_E_KMZennirSZqx-5D-_5LF3eSN9MkjlwhCczbfNb1knHBClgP9mjsyo99rxsLLCBHmElGj9-Ut1Ndu3gpD0hytKrvKT0KMxy6iQjpa9cUsqKoCpfUhw5aNuaeMXjF7luQKL__x22M1L7hZYC5Z0e9IjRbhZccWt59t2O1W-UmtLAGQnjc' },
-        { key: 'wat-arun', type: 'temple', title: 'วัดอรุณ', dist: '2.4 กม.', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDTBzZY7TMbpG_fDacNYnVKTm2sTWqvH2U2QT8PyeW_C5WobACZi7rfIG5AnusTcrc3GNWWCrViecdwhSSrbc0j6X7nJsAVayLiL5jQknWyvayKAj_UgXbDrtGCNOOPMs9km1qZt_942ulyxZIzdPBcRGb6HaTjOuuxY6j_cVGMGAVZ5ESz8T3tOx0Yhjl_S5gUeaeeImZAgSzYzu-kDATZLwQd-tClOycx6QWsc-N913Cn_fiMNFn5l4kBek-jt30UfQGLNeTwl3M' }
+        { key: 'wat-suwan', type: 'วัด', title: 'วัดสุวรรณาราม', dist: 'ตำแหน่งปัจจุบัน', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBhtM-hqxa7kOPaOQYIKz8cVhTNOEXW66oRP8d7SOghQALnY_-SIyS4nmBThe-jzMnYL8A54RmipTVZvKu6GD_8UyDqa2Tyy7XbZaUy3ehKmCkZso5DUBCdP5Gk8yqVDOAlQ6K9uFD-Hxd7eHYdryKg2_CWZumv3CoSVhAnR6SIpoI8tTY_fmmbpgue5Fnqx3Qj4HzZyseZ3Tm4hFE6sYYBfoLiJbSuQNlpXB2hMt9oHEn7a8RgZjSDqHUC25xaNPQE-CLz3F-s9nA' },
+        { key: 'wat-rakhang', type: 'วัด', title: 'วัดระฆัง', dist: '0.8 กม.', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAO2bvq4j3pKa85BGgb0iom1LxPt0D4VhQHD9CPCI97O3jHk5Jpz1BctRofpjW2iVPxAsGk-wrLw1V7e1E8Y86GDcriJO92BefJ5YxpAixvfOMu0cs5yfqDaOLmwzBRR0pnUbKYX1iwVue1EkWn9ly9YWv_DxaVDu3eJpiZ2_AEcWWXIlpPIgdmtDx1rzTw5AFm5QCNzV7jjJnJKKIJYavEMCpbIXTB7qwCQdtCe00V8MYmh_8gOSWDjrdAM0Es9d8-aYs_ID-laPM' },
+        { key: 'baan-bu', type: 'ชุมชน', title: 'ชุมชนบ้านบุ', dist: '0.5 กม.', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCCFvGC8euzgiCF0_lAWBoEpKlLoMuuiLXq-rwRhZ5LHL7Jdg0lr2BFZ6rtxPWgYdSoRR5rlkIoVOkkx_h3Ms7DoYUZo_E_KMZennirSZqx-5D-_5LF3eSN9MkjlwhCczbfNb1knHBClgP9mjsyo99rxsLLCBHmElGj9-Ut1Ndu3gpD0hytKrvKT0KMxy6iQjpa9cUsqKoCpfUhw5aNuaeMXjF7luQKL__x22M1L7hZYC5Z0e9IjRbhZccWt59t2O1W-UmtLAGQnjc' },
+        { key: 'wat-arun', type: 'วัด', title: 'วัดอรุณ', dist: '2.4 กม.', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDTBzZY7TMbpG_fDacNYnVKTm2sTWqvH2U2QT8PyeW_C5WobACZi7rfIG5AnusTcrc3GNWWCrViecdwhSSrbc0j6X7nJsAVayLiL5jQknWyvayKAj_UgXbDrtGCNOOPMs9km1qZt_942ulyxZIzdPBcRGb6HaTjOuuxY6j_cVGMGAVZ5ESz8T3tOx0Yhjl_S5gUeaeeImZAgSzYzu-kDATZLwQd-tClOycx6QWsc-N913Cn_fiMNFn5l4kBek-jt30UfQGLNeTwl3M' }
     ];
 
     function renderCards(filter = 'all') {
         const grid = document.getElementById('heritage-grid');
         grid.innerHTML = cardData
-            .filter(item => filter === 'all' || item.type === filter)
+            .filter(item => filter === 'all' || item.type === (filter === 'temple' ? 'วัด' : filter === 'community' ? 'ชุมชน' : filter))
             .map(item => `
-                <div onclick="changeContent('${item.key}')" class="group bg-white dark:bg-slate-800 rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all border border-slate-100 dark:border-slate-700 cursor-pointer flex flex-col h-full">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="${item.img}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <span class="absolute top-4 right-4 bg-primary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase">${item.dist}</span>
-                    </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <span class="text-[10px] font-black text-primary uppercase tracking-widest mb-1">${item.type}</span>
-                        <h4 class="text-xl font-bold text-wood dark:text-white group-hover:text-primary transition-colors">${item.title}</h4>
-                        <div class="mt-auto pt-4 flex items-center justify-between">
-                            <span class="text-xs font-bold text-slate-400">สำรวจข้อมูล</span>
-                            <span class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-all">arrow_forward</span>
+                <div onclick="changeContent('${item.key}')" class="group bg-white dark:bg-slate-800 rounded-[2.5rem] overflow-hidden shadow-xl transition-all hover:-translate-y-4 cursor-pointer border border-primary/5">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="${item.img}" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-125">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center">
+                             <span class="bg-white text-black px-6 py-2 rounded-full text-[10px] font-black tracking-widest uppercase">เข้าชมสถานที่</span>
                         </div>
+                        <span class="absolute top-6 right-6 bg-primary text-white text-[10px] font-black px-4 py-1.5 rounded-full shadow-lg">${item.dist}</span>
+                    </div>
+                    <div class="p-8">
+                        <span class="text-[10px] font-black text-primary uppercase tracking-[0.2em] mb-2 block">${item.type}</span>
+                        <h4 class="text-2xl font-black text-secondary dark:text-white leading-tight">${item.title}</h4>
                     </div>
                 </div>
             `).join('');
@@ -270,29 +311,16 @@
         renderCards(type);
     }
 
-    // Smooth Page Transition Logic (ห้ามขาด)
-    function smoothNavigate(url) {
-        const loader = document.getElementById('page-loader');
-        loader.classList.remove('fade-out');
-        setTimeout(() => { window.location.href = url; }, 500);
-    }
-
-    document.querySelectorAll('a[href]').forEach(link => {
-        link.addEventListener('click', function(e) {
-            const dest = this.getAttribute('href');
-            if (dest && dest !== '#' && !dest.startsWith('http')) {
-                e.preventDefault();
-                smoothNavigate(dest);
-            }
-        });
-    });
-
     window.addEventListener('DOMContentLoaded', () => {
         renderCards();
-        document.getElementById('map-direction-btn').onclick = () => window.open(`https://www.google.com/maps/dir/?api=1&destination=13.7611,100.4789`);
-        // เมื่อหน้าพร้อม ให้เอา Loader ออก
-        setTimeout(() => document.getElementById('page-loader').classList.add('fade-out'), 500);
+        setTimeout(() => document.getElementById('page-loader').classList.add('fade-out'), 800);
     });
+
+    function smoothNavigate(url) {
+        const loader = document.getElementById('page-loader');
+        loader.classList.remove('fade-out'); 
+        setTimeout(() => { window.location.href = url; }, 500);
+    }
 </script>
 
 </body>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Thonburi Heritage - เส้นทางท่องเที่ยว (Leaflet Edition)</title>
+    <title>Thonburi Heritage - เส้นทางท่องเที่ยว (Heritage Explorer)</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -49,62 +49,57 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
 
-        /* Transition Styles */
         #page-loader {
-            position: fixed;
-            inset: 0;
-            background-color: #f8f6f6;
-            z-index: 9999;
-            pointer-events: none;
-            opacity: 1;
-            transition: opacity 0.5s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: fixed; inset: 0; background-color: #f8f6f6; z-index: 9999;
+            pointer-events: none; opacity: 1; transition: opacity 0.5s ease-in-out;
+            display: flex; align-items: center; justify-content: center;
         }
         #page-loader.fade-out { opacity: 0; }
     </style>
-    <meta name="description" content="สัมผัสมรดกทางวัฒนธรรมย่านธนบุรีและคลองบางกอกน้อย ย้อนรอยประวัติศาสตร์ผ่านเทคโนโลยีดิจิทัล">
-
-    <meta name="keywords" content="ธนบุรี, คลองบางกอกน้อย, มรดกทางวัฒนธรรม, เที่ยวฝั่งธน, วัดสุวรรณาราม, บ้านบุ">
-
-    <meta property="og:title" content="Thonburi Heritage - จิตวิญญาณแห่งธนบุรี">
-    <meta property="og:description" content="โครงการอนุรักษ์มรดกดิจิทัลเพื่อชุมชนริมคลองบางกอกน้อย">
-    <meta property="og:image" content="URL_รูปภาพหน้าปกเว็บของคุณ">
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-hidden">
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-hidden font-display">
 
 <div id="page-loader">
     <div class="flex flex-col items-center gap-4">
         <span class="material-symbols-outlined text-primary text-6xl animate-bounce">map</span>
-        <p class="text-secondary font-bold tracking-widest uppercase text-xs">กำลังโหลดแผนที่...</p>
+        <p class="text-secondary font-bold tracking-widest uppercase text-xs">กำลังโหลดแผนที่เส้นทาง...</p>
     </div>
 </div>
 
 <div class="flex h-screen flex-col">
-    <header class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark px-6 py-3 z-20">
+    <header class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark px-6 py-3 z-20 shadow-sm font-display">
         <div class="flex items-center gap-8">
             <div class="flex items-center gap-3">
-                <div class="size-10 bg-primary rounded-xl flex items-center justify-center text-white">
+                <div class="size-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg">
                     <span class="material-symbols-outlined">map</span>
                 </div>
-                <h2 class="text-xl font-bold tracking-tight text-wood dark:text-gold">Heritage Explorer</h2>
+                <h2 class="text-xl font-black tracking-tighter text-wood dark:text-gold uppercase">Heritage Explorer</h2>
             </div>
-            <nav class="hidden md:flex items-center gap-6">
-                <a class="text-sm font-semibold text-primary border-b-2 border-primary pb-1" href="index.html">หน้าแรก</a>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-sm font-bold text-slate-500 hover:text-primary transition-all uppercase tracking-widest" href="index.html">หน้าแรก</a>
+                <a class="text-sm font-bold text-slate-500 hover:text-primary transition-all uppercase tracking-widest" href="news.html">ข่าวสาร</a>
+                <a class="text-sm font-bold text-slate-500 hover:text-primary transition-all uppercase tracking-widest" href="f.html">แหล่งมรดกทางวัฒนธรรม</a>
             </nav>
         </div>
-        <div class="h-8 w-8 rounded-full bg-wood flex items-center justify-center text-white text-xs font-bold ring-2 ring-primary/20 cursor-pointer overflow-hidden">
-            <img alt="User" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVfq1o5_Ff3LMHD5oD8pdQtNfQfuXz1e1QF0ezX9ffhpDMa5RcMD3QbEXmGxfOnHgNS0Zu9vl6rqiUPZH1CqXejFI1sWYgR3VteIS3DMJuQpjekY0FPEKTtX1R17eDf6whL09F2YJeJiko6SEUqgS_sh2K99HeAYOaMgI-7_0S88ZAmLfsChDDjCeROLwxvdrD7PtORyqBvY2jM2mKWAxrpsDSljYwHgqliJVZnp6hkwmb2aqLpKmsV6PEdGbPynf7I-Vg22STTII"/>
+        
+        <div class="flex items-center gap-4">
+            <button onclick="window.location.href='admin-login.html'" class="hidden md:block bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white text-slate-600 dark:text-slate-300 px-5 py-1.5 rounded-full text-xs font-black transition-all">
+                ระบบจัดการ
+            </button>
+            <div class="h-10 w-10 rounded-full bg-wood flex items-center justify-center text-white text-xs font-bold ring-2 ring-primary/20 cursor-pointer overflow-hidden shadow-md">
+                <img alt="User" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVfq1o5_Ff3LMHD5oD8pdQtNfQfuXz1e1QF0ezX9ffhpDMa5RcMD3QbEXmGxfOnHgNS0Zu9vl6rqiUPZH1CqXejFI1sWYgR3VteIS3DMJuQpjekY0FPEKTtX1R17eDf6whL09F2YJeJiko6SEUqgS_sh2K99HeAYOaMgI-7_0S88ZAmLfsChDDjCeROLwxvdrD7PtORyqBvY2jM2mKWAxrpsDSljYwHgqliJVZnp6hkwmb2aqLpKmsV6PEdGbPynf7I-Vg22STTII"/>
+            </div>
         </div>
     </header>
 
     <main class="flex flex-1 overflow-hidden">
         <aside class="w-full md:w-[40%] flex flex-col border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark z-10 shadow-xl">
-            <div class="p-6 border-b border-slate-100 dark:border-slate-800">
-                <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full mb-2">WALKING TOUR</span>
-                <h1 class="text-2xl font-bold text-wood">เลาะคลอง ส่องวัดเก่า</h1>
-                <p class="text-slate-500 text-sm mt-1">เริ่มต้นที่: ท่าเรือวังหลัง (ศิริราช)</p>
+            <div class="p-8 border-b border-slate-100 dark:border-slate-800">
+                <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-black rounded-full mb-3 uppercase tracking-widest">Walking Tour</span>
+                <h1 class="text-3xl font-black text-wood dark:text-gold">เลาะคลอง ส่องวัดเก่า</h1>
+                <p class="text-slate-500 text-sm mt-2 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sm">location_on</span> เริ่มต้นที่: ท่าเรือวังหลัง (ศิริราช)
+                </p>
             </div>
             <div class="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-8" id="stops-container"></div>
         </aside>
@@ -116,10 +111,10 @@
 </div>
 
 <div id="place-detail" class="fixed inset-0 z-[60] hidden">
-    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" onclick="closeDetail()"></div>
-    <div id="detail-panel" class="absolute right-0 top-0 h-full w-full max-w-lg bg-white shadow-2xl transform transition-transform duration-300 translate-x-full">
-        <button onclick="closeDetail()" class="absolute top-4 left-4 z-10 size-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-slate-50 transition-colors">
-            <span class="material-symbols-outlined text-secondary">close</span>
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onclick="closeDetail()"></div>
+    <div id="detail-panel" class="absolute right-0 top-0 h-full w-full max-w-lg bg-white dark:bg-background-dark shadow-2xl transform transition-transform duration-500 translate-x-full">
+        <button onclick="closeDetail()" class="absolute top-6 left-6 z-10 size-12 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-secondary dark:text-white">close</span>
         </button>
         <div id="detail-content" class="h-full overflow-y-auto custom-scrollbar"></div>
     </div>
@@ -127,6 +122,16 @@
 
 <script>
     const placesData = [
+        {
+            id: 'wat-suwan',
+            title: "วัดสุวรรณาราม",
+            category: "วัดสำคัญทางประวัติศาสตร์",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBhtM-hqxa7kOPaOQYIKz8cVhTNOEXW66oRP8d7SOghQALnY_-SIyS4nmBThe-jzMnYL8A54RmipTVZvKu6GD_8UyDqa2Tyy7XbZaUy3ehKmCkZso5DUBCdP5Gk8yqVDOAlQ6K9uFD-Hxd7eHYdryKg2_CWZumv3CoSVhAnR6SIpoI8tTY_fmmbpgue5Fnqx3Qj4HzZyseZ3Tm4hFE6sYYBfoLiJbSuQNlpXB2hMt9oHEn7a8RgZjSDqHUC25xaNPQE-CLz3F-s9nA",
+            time: "08:00 - 17:00 น.",
+            price: "เข้าชมฟรี",
+            desc: "วัดโบราณสมัยอยุธยาเดิมชื่อ วัดทอง ต่อมาในสมัยรัชกาลที่ 1 ทรงบูรณปฏิสังขรณ์ใหม่ จุดเด่นคือภาพทศชาติชาดกในพระอุโบสถที่เป็นผลงานประชันฝีมือช่างสิบหมู่ยุคทอง",
+            lat: 13.7611, lng: 100.4789
+        },
         {
             id: 'wat-rakhang',
             title: "วัดระฆังโฆสิตาราม",
@@ -138,14 +143,24 @@
             lat: 13.7531, lng: 100.4855
         },
         {
-            id: 'trok-ma-mear',
-            title: "ชุมชนตรอกมะเมีย",
+            id: 'baan-bu',
+            title: "ชุมชนบ้านบุ",
             category: "ชุมชนเก่าแก่",
             image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDsEHarI1qFlFgMlrWT7V0vviDTGc1CZ3SkCpKALZNvH93gaai6Tj3o8M8g_0Vym_ADTkbx7s4E7t8kqGRT3DoLUe5N5YRAQsx_soQjmyB79LnAx1J6VAJSRFndqZPRKMNnHab7N9SzUaUiWyE9sbkTwEpFbsY6ygfGcA0ekS9vAhnNVPSNw2gYmNRjpr59DNEkk_OUGhdpKu3GqUobNzpcK6PVde52bScjSpXT8FqGtzCz5joMpcr7z6GSyPMBem32VtBpaY7K4Ng",
             time: "เปิดตลอดเวลา",
             price: "เข้าชมฟรี",
-            desc: "ย่านชุมชนไม้โบราณริมน้ำ สัมผัสวิถีชีวิตดั้งเดิมและงานหัตถกรรมที่หาชมยาก",
-            lat: 13.7565, lng: 100.4845
+            desc: "ชุมชนช่างหัตถกรรมที่สืบทอดภูมิปัญญาการทำขันลงหินมานานกว่า 200 ปี เป็นแหล่งประวัติศาสตร์ที่มีชีวิตริมคลองบางกอกน้อย",
+            lat: 13.7580, lng: 100.4795
+        },
+        {
+            id: 'wat-arun',
+            title: "วัดอรุณราชวราราม",
+            category: "วัดสำคัญทางประวัติศาสตร์",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDTBzZY7TMbpG_fDacNYnVKTm2sTWqvH2U2QT8PyeW_C5WobACZi7rfIG5AnusTcrc3GNWWCrViecdwhSSrbc0j6X7nJsAVayLiL5jQknWyvayKAj_UgXbDrtGCNOOPMs9km1qZt_942ulyxZIzdPBcRGb6HaTjOuuxY6j_cVGMGAVZ5ESz8T3tOx0Yhjl_S5gUeaeeImZAgSzYzu-kDATZLwQd-tClOycx6QWsc-N913Cn_fiMNFn5l4kBek-jt30UfQGLNeTwl3M",
+            time: "08:00 - 18:00 น.",
+            price: "คนไทยฟรี",
+            desc: "พระปรางค์ริมน้ำเจ้าพระยาสัญลักษณ์แห่งความรุ่งโรจน์ของกรุงธนบุรี ประดับด้วยกระเบื้องเคลือบสีโบราณและรูปปั้นยักษ์วัดแจ้ง",
+            lat: 13.7437, lng: 100.4889
         },
         {
             id: 'thonburi-station',
@@ -154,7 +169,7 @@
             image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA-BUpmgeOJesl9Y2nz5lTqyMKW8R0Sf44gdSajUnwU4g2lDz1PwciT8gU0EmI4cGe5RH2Y0I60RDSm0PgQq6zZ1F2oQqJ44D3hBI2Qz3w--RPZX4bp2UTlf74A3U9IH6UGH3kKTT5lY0wtY7eOqfObWWN-EjxPGd8tHGYc2_J-7Vl0CoCOtO7W9jpISROF2KBtA8cuZcxgoBMREi_l8HWAW6fptNDFQlgQByhzWApsVATc4Y1a8hEnh0De13yCwhvgckn1oZtZ_bU",
             time: "04:00 - 22:00 น.",
             price: "เข้าชมฟรี",
-            desc: "อดีตสถานีปลายทางของรถไฟสายมรณะ มีสถาปัตยกรรมที่สวยงามและเป็นจุดเชื่อมต่อการเดินทางสำคัญ",
+            desc: "อดีตสถานีปลายทางของรถไฟสายมรณะ มีสถาปัตยกรรมที่สวยงามและเป็นจุดเชื่อมต่อการเดินทางสำคัญในย่านบางกอกน้อย",
             lat: 13.7595, lng: 100.4830
         }
     ];
@@ -189,12 +204,12 @@
             const stopHtml = `
                 <div onclick="focusPlace('${place.id}')" class="relative flex gap-6 cursor-pointer group">
                     ${index < placesData.length - 1 ? '<div class="route-line"></div>' : ''}
-                    <div class="z-10 size-10 bg-primary border-4 border-white rounded-full flex items-center justify-center text-white font-bold shadow-md group-hover:scale-110 transition-transform">
+                    <div class="z-10 size-10 bg-primary border-4 border-white dark:border-slate-800 rounded-full flex items-center justify-center text-white font-black shadow-md group-hover:scale-110 transition-transform">
                         ${index + 1}
                     </div>
-                    <div class="flex-1 bg-white border border-slate-100 p-4 rounded-2xl hover:shadow-lg transition-all border-l-4 border-l-primary shadow-sm">
-                        <h3 class="font-bold text-wood group-hover:text-primary transition-colors">${place.title}</h3>
-                        <p class="text-xs text-slate-500 mt-1 line-clamp-1">${place.category}</p>
+                    <div class="flex-1 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 p-5 rounded-2xl hover:shadow-2xl transition-all border-l-4 border-l-primary shadow-sm text-left">
+                        <h3 class="font-bold text-wood dark:text-white group-hover:text-primary transition-colors text-lg">${place.title}</h3>
+                        <p class="text-xs text-slate-500 mt-1 uppercase tracking-widest">${place.category}</p>
                     </div>
                 </div>
             `;
@@ -203,16 +218,17 @@
 
         L.polyline(routePath, { color: '#C5A059', weight: 4, dashArray: '10, 10', opacity: 0.8 }).addTo(map);
 
-        // เมื่อแผนที่พร้อม ให้เอา Loader ออก
         setTimeout(() => {
             document.getElementById('page-loader').classList.add('fade-out');
-        }, 300);
+        }, 500);
     }
 
     function focusPlace(id) {
         const place = placesData.find(p => p.id === id);
-        map.flyTo([place.lat, place.lng], 17);
-        showDetail(id);
+        if(place) {
+            map.flyTo([place.lat, place.lng], 17, { animate: true, duration: 1.5 });
+            showDetail(id);
+        }
     }
 
     function showDetail(id) {
@@ -221,23 +237,29 @@
 
         const content = document.getElementById('detail-content');
         content.innerHTML = `
-            <img src="${data.image}" class="w-full h-64 object-cover">
-            <div class="p-8">
-                <span class="text-xs font-bold text-primary tracking-widest uppercase">${data.category}</span>
-                <h2 class="text-3xl font-black text-wood mt-1 mb-4">${data.title}</h2>
-                <div class="grid grid-cols-2 gap-4 mb-6">
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                        <p class="text-[10px] font-bold text-slate-400 uppercase">เวลาเปิด</p>
-                        <p class="text-sm font-bold text-wood">${data.time}</p>
+            <div class="relative h-80 overflow-hidden">
+                <img src="${data.image}" class="w-full h-full object-cover shadow-inner">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            </div>
+            <div class="p-10 text-left">
+                <span class="inline-block px-3 py-1 bg-primary text-white text-[10px] font-black rounded-full uppercase tracking-widest mb-4">${data.category}</span>
+                <h2 class="text-4xl font-black text-wood dark:text-gold mb-6 leading-tight">${data.title}</h2>
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                    <div class="bg-slate-50 dark:bg-slate-800 p-5 rounded-2xl border border-slate-100 dark:border-slate-700">
+                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">เวลาเข้าชม</p>
+                        <p class="text-sm font-bold text-wood dark:text-white">${data.time}</p>
                     </div>
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
-                        <p class="text-[10px] font-bold text-slate-400 uppercase">ค่าเข้า</p>
-                        <p class="text-sm font-bold text-wood">${data.price}</p>
+                    <div class="bg-slate-50 dark:bg-slate-800 p-5 rounded-2xl border border-slate-100 dark:border-slate-700">
+                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">ค่าธรรมเนียม</p>
+                        <p class="text-sm font-bold text-wood dark:text-white">${data.price}</p>
                     </div>
                 </div>
-                <p class="text-slate-600 leading-relaxed mb-8">${data.desc}</p>
-                <button onclick="window.open('https://www.google.com/maps?q=${data.lat},${data.lng}')" 
-                        class="w-full bg-primary text-secondary font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-lg">
+                <div class="space-y-4 mb-10">
+                    <h4 class="font-black text-secondary dark:text-gold text-lg border-b pb-2">คำอธิบาย</h4>
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-lg text-justify">${data.desc}</p>
+                </div>
+                <button onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=${data.lat},${data.lng}', '_blank')" 
+                        class="w-full bg-primary text-white font-black py-5 rounded-2xl flex items-center justify-center gap-3 hover:bg-wood transition-all shadow-xl active:scale-95">
                     <span class="material-symbols-outlined">directions</span> นำทางด้วย Google Maps
                 </button>
             </div>
@@ -249,10 +271,19 @@
 
     function closeDetail() {
         document.getElementById('detail-panel').classList.add('translate-x-full');
-        setTimeout(() => document.getElementById('place-detail').classList.add('hidden'), 300);
+        setTimeout(() => document.getElementById('place-detail').classList.add('hidden'), 500);
     }
 
-    // ระบบ Smooth Navigation สำหรับลิงก์ทั้งหมด
+    function checkUrlParameters() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const placeId = urlParams.get('id');
+        if (placeId) {
+            setTimeout(() => {
+                focusPlace(placeId);
+            }, 1200); 
+        }
+    }
+
     document.addEventListener('click', (e) => {
         const link = e.target.closest('a');
         if (link && link.getAttribute('href') && !link.getAttribute('href').startsWith('http') && link.getAttribute('href') !== '#') {
@@ -263,7 +294,10 @@
         }
     });
 
-    document.addEventListener('DOMContentLoaded', initMap);
+    document.addEventListener('DOMContentLoaded', () => {
+        initMap();
+        checkUrlParameters();
+    });
 </script>
 
 </body>

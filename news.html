@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>News & Events - Thonburi Heritage</title>
+    <title>ข่าวสารและกิจกรรม - Thonburi Heritage</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;900&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -33,108 +33,129 @@
         .news-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
         .news-card:hover { transform: translateY(-8px); }
         
-        /* แก้ไข Error @apply: เปลี่ยนเป็น Standard CSS */
         .filter-btn.active { 
-            background-color: #ec5b13; /* primary color */
+            background-color: #ec5b13; 
             color: white; 
             border-color: #ec5b13;
-            box-shadow: 0 10px 15px -3px rgba(236, 91, 19, 0.3); /* shadow-lg shadow-primary/30 */
+            box-shadow: 0 10px 15px -3px rgba(236, 91, 19, 0.3);
         }
     </style>
-    <meta name="description" content="สัมผัสมรดกทางวัฒนธรรมย่านธนบุรีและคลองบางกอกน้อย ย้อนรอยประวัติศาสตร์ผ่านเทคโนโลยีดิจิทัล">
-
-    <meta name="keywords" content="ธนบุรี, คลองบางกอกน้อย, มรดกทางวัฒนธรรม, เที่ยวฝั่งธน, วัดสุวรรณาราม, บ้านบุ">
-
-    <meta property="og:title" content="Thonburi Heritage - จิตวิญญาณแห่งธนบุรี">
-    <meta property="og:description" content="โครงการอนุรักษ์มรดกดิจิทัลเพื่อชุมชนริมคลองบางกอกน้อย">
-    <meta property="og:image" content="URL_รูปภาพหน้าปกเว็บของคุณ">
 </head>
 <body class="bg-background-light text-slate-900 font-display">
 
-<div id="page-loader" class="bg-background-light pt-20 pb-10 px-6 text-center border-t border-primary/20">
+<div id="page-loader" class="bg-secondary">
     <div class="flex flex-col items-center gap-4">
-        <span class="material-symbols-outlined text-primary text-6xl animate-bounce">temple_buddhist</span>
-        <p class="text-secondary font-bold tracking-widest uppercase text-xs">กำลังโหลดข่าวสารมรดก...</p>
+        <span class="material-symbols-outlined text-heritage-gold text-6xl animate-bounce">news</span>
+        <p class="text-heritage-gold font-bold tracking-widest uppercase text-xs">กำลังอัปเดตข้อมูลข่าวสาร...</p>
     </div>
 </div>
 
 <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
     <header class="fixed top-0 left-0 right-0 z-50 bg-secondary/95 backdrop-blur-md border-b border-heritage-gold/20">
-        <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between text-white">
+        <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between text-white text-display">
             <div class="flex items-center gap-3 text-heritage-gold">
-                <span class="material-symbols-outlined text-3xl">temple_buddhist</span>
-                <h2 class="text-white text-xl font-bold tracking-tight">Thonburi Heritage</h2>
+                <span class="material-symbols-outlined text-3xl"></span>
+                <h2 class="text-white text-xl font-black tracking-tight uppercase">Thonburi Heritage</h2>
             </div>
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+            <nav class="hidden md:flex items-center gap-8 text-sm font-bold">
                 <a href="index.html" class="hover:text-primary transition-all">หน้าแรก</a>
-                <a href="routes.html" class="hover:text-primary transition-all">แผนที่</a>
-                <a href="f.html" class="hover:text-primary transition-all">แหล่งมรดก</a>
-                <a href="news.html" class="text-primary font-bold border-b-2 border-primary pb-1">ข่าวสาร</a>
+                <a href="routes.html" class="hover:text-primary transition-all">เส้นทางท่องเที่ยว</a>
+                <a href="f.html" class="hover:text-primary transition-all">แหล่งมรดกทางวัฒนธรรม</a>
+                <a href="news.html" class="text-primary border-b-2 border-primary pb-1">ข่าวสาร</a>
                 <a href="about.html" class="hover:text-primary transition-all">เกี่ยวกับเรา</a>
             </nav>
+            <div class="hidden lg:block">
+                <button class="bg-heritage-gold hover:bg-white hover:text-secondary text-secondary px-6 py-2 rounded-full text-xs font-black transition-all">เข้าสู่ระบบ</button>
+            </div>
         </div>
     </header>
 
     <main class="pt-20">
-        <section class="bg-secondary py-20 px-6">
-            <div class="max-w-7xl mx-auto text-center">
-                <span class="text-heritage-gold font-black tracking-[0.3em] uppercase text-xs mb-4 block">Updates</span>
-                <h1 class="text-4xl md:text-6xl font-black text-white mb-6">ข่าวสารและกิจกรรม</h1>
-                <p class="text-white/60 text-lg max-w-2xl mx-auto font-light leading-relaxed">เกาะติดทุกความเคลื่อนไหว การบูรณะแหล่งมรดก และกิจกรรมทางวัฒนธรรมในย่านธนบุรี</p>
+        <section class="bg-secondary py-24 px-6 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[100px] -mr-48 -mt-48"></div>
+            <div class="max-w-7xl mx-auto text-center relative z-10">
+                <span class="text-heritage-gold font-black tracking-[0.4em] uppercase text-xs mb-4 block">Archive Updates</span>
+                <h1 class="text-4xl md:text-7xl font-black text-white mb-6">ข่าวสารและกิจกรรม</h1>
+                <p class="text-white/60 text-xl max-w-2xl mx-auto font-light leading-relaxed italic">
+                    "บันทึกกาลเวลาและการเคลื่อนไหว ของหัวใจแห่งกรุงธนบุรี"
+                </p>
             </div>
         </section>
 
-        <section class="max-w-7xl mx-auto px-6 -mt-8 relative z-10">
-            <div class="bg-white p-4 rounded-3xl shadow-2xl border border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
-                <div class="flex gap-2" id="filter-container">
-                    <button onclick="filterNews('all')" class="filter-btn active px-6 py-2 rounded-full text-xs font-bold border border-slate-200 transition-all">ทั้งหมด</button>
-                    <button onclick="filterNews('event')" class="filter-btn px-6 py-2 rounded-full text-xs font-bold border border-slate-200 transition-all">กิจกรรม</button>
-                    <button onclick="filterNews('update')" class="filter-btn px-6 py-2 rounded-full text-xs font-bold border border-slate-200 transition-all">ประกาศข่าว</button>
+        <section class="max-w-7xl mx-auto px-6 -mt-10 relative z-10">
+            <div class="bg-white p-6 rounded-[2.5rem] shadow-2xl border border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex flex-wrap justify-center gap-3" id="filter-container">
+                    <button onclick="filterNews('all')" class="filter-btn active px-8 py-2.5 rounded-full text-xs font-black border border-slate-100 transition-all uppercase tracking-widest">ทั้งหมด</button>
+                    <button onclick="filterNews('event')" class="filter-btn px-8 py-2.5 rounded-full text-xs font-black border border-slate-100 transition-all uppercase tracking-widest text-slate-400">กิจกรรม</button>
+                    <button onclick="filterNews('update')" class="filter-btn px-8 py-2.5 rounded-full text-xs font-black border border-slate-100 transition-all uppercase tracking-widest text-slate-400">ประกาศข่าว</button>
                 </div>
-                <div class="relative w-full md:w-64">
-                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
-                    <input type="text" class="w-full pl-10 pr-4 py-2 bg-slate-50 border-none rounded-2xl text-xs focus:ring-2 focus:ring-primary/20" placeholder="ค้นหาข่าวสาร...">
+                <div class="relative w-full md:w-80">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></span>
+                    <input type="text" class="w-full pl-12 pr-6 py-3 bg-slate-50 border-none rounded-full text-sm focus:ring-2 focus:ring-primary/20" placeholder="ค้นหาหัวข้อข่าว...">
                 </div>
             </div>
         </section>
 
-        <section class="py-20 max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="news-grid">
+        <section class="py-24 max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12" id="news-grid">
                 </div>
         </section>
     </main>
 
-    <footer class="bg-secondary text-white pt-20 pb-10 px-6 text-center border-t border-heritage-gold/20">
-        <h2 class="text-2xl font-bold mb-8 text-heritage-gold">Thonburi Heritage</h2>
-        <p class="text-white/30 text-xs uppercase tracking-widest leading-relaxed">
-            เชื่อมต่อประวัติศาสตร์สู่เทคโนโลยีเพื่อความยั่งยืนของชุมชน<br>
-            © 2026 Thonburi Heritage Project Management
-        </p>
+    <footer class="bg-secondary text-white pt-24 pb-12 px-6 text-center border-t border-heritage-gold/20">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-black mb-6 text-heritage-gold uppercase tracking-tighter">Thonburi Heritage</h2>
+            <div class="flex justify-center gap-8 mb-10 text-sm font-bold opacity-60">
+                <a href="index.html" class="hover:text-primary transition-all">หน้าแรก</a>
+                <a href="routes.html" class="hover:text-primary transition-all">เส้นทาง</a>
+                <a href="f.html" class="hover:text-primary transition-all">แหล่งมรดก</a>
+                <a href="about.html" class="hover:text-primary transition-all">เกี่ยวกับเรา</a>
+            </div>
+            <p class="text-white/20 text-[10px] uppercase tracking-[0.3em] leading-relaxed">
+                เชื่อมต่อประวัติศาสตร์สู่เทคโนโลยีเพื่อความยั่งยืนของชุมชนอย่างแท้จริง<br>
+                © 2026 THONBURI HERITAGE DIGITAL ARCHIVE PROJECT
+            </p>
+        </div>
     </footer>
 </div>
 
 <script>
+    // Database ข้อมูลข่าวสาร (ปรับปรุงให้แน่นขึ้น)
     const newsData = [
         {
-            title: "เทศกาลล่องเรือชมไฟคลองบางกอกน้อย 2026",
-            date: "24 ก.พ. 2026",
+            title: "เทศกาลล่องเรือชมไฟ คลองบางกอกน้อย 2569",
+            date: "24 ก.พ. 2569",
             cat: "event",
             img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAT3ztVMcOWNIAd3p7V2Yr-2ZkZzQI49hM-9fmfDFNJcXcGRZww6rweAWsDdOQxmH9ormymp4fslCMO-nPrffbUHkFmUs_gP-77wml4C9faTwdFyrmHXwA-Banvyc2D79pfFoMrT9fvBVJmM-68Akr9L1wCZtsCbPUbYJxC7TvEGtZi0GkCCW15zANalerSIswEbb7yXIc7xo5ueAE_6taKqGtRI94aFYlyVolx2q6egQ7B8kI45UyqXBtJPSvwx833oa97NHL3Qtk0",
-            desc: "เชิญชวนร่วมงานล่องเรือยามค่ำคืน สัมผัสแสงสีที่ประดับประดาตามวัดวาอารามตลอดสองฝั่งคลอง..."
+            desc: "ร่วมสัมผัสมนต์เสน่ห์แห่งสายน้ำยามค่ำคืน การประดับไฟอาคารเก่าและวัดวาอารามตลอดสองฝั่งคลอง พร้อมรับชมการแสดงทางวัฒนธรรมจากชาวชุมชน"
         },
         {
-            title: "เริ่มการบูรณะจิตรกรรมฝาผนังวัดสุวรรณาราม",
-            date: "15 ก.พ. 2026",
+            title: "โครงการบูรณะจิตรกรรมฝาผนัง วัดสุวรรณาราม",
+            date: "15 ก.พ. 2569",
             cat: "update",
             img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAT3ztVMcOWNIAd3p7V2Yr-2ZkZzQI49hM-9fmfDFNJcXcGRZww6rweAWsDdOQxmH9ormymp4fslCMO-nPrffbUHkFmUs_gP-77wml4C9faTwdFyrmHXwA-Banvyc2D79pfFoMrT9fvBVJmM-68Akr9L1wCZtsCbPUbYJxC7TvEGtZi0GkCCW15zANalerSIswEbb7yXIc7xo5ueAE_6taKqGtRI94aFYlyVolx2q6egQ7B8kI45UyqXBtJPSvwx833oa97NHL3Qtk1",
-            desc: "กรมศิลปากรเริ่มขั้นตอนการสำรวจและบูรณะภาพทศชาติชาดกในพระอุโบสถ คาดใช้เวลาประมาณ 6 เดือน..."
+            desc: "กรมศิลปากรประกาศเริ่มขั้นตอนการสำรวจและบูรณะภาพทศชาติชาดกในพระอุโบสถ เพื่อรักษาศิลปกรรมล้ำค่าสมัยต้นรัตนโกสินทร์ให้คงอยู่สืบไป"
         },
         {
-            title: "เปิดเส้นทางจักรยานชมมรดกชุมชนบ้านบุ",
-            date: "10 ก.พ. 2026",
+            title: "เปิดตัวเส้นทางเดินเท้า Heritage Walk ชุมชนบ้านบุ",
+            date: "10 ก.พ. 2569",
             cat: "event",
             img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAT3ztVMcOWNIAd3p7V2Yr-2ZkZzQI49hM-9fmfDFNJcXcGRZww6rweAWsDdOQxmH9ormymp4fslCMO-nPrffbUHkFmUs_gP-77wml4C9faTwdFyrmHXwA-Banvyc2D79pfFoMrT9fvBVJmM-68Akr9L1wCZtsCbPUbYJxC7TvEGtZi0GkCCW15zANalerSIswEbb7yXIc7xo5ueAE_6taKqGtRI94aFYlyVolx2q6egQ7B8kI45UyqXBtJPSvwx833oa97NHL3Qtk2",
-            desc: "สัมผัสวิถีช่างขันลงหินผ่านเส้นทางจักรยานรอบชุมชน พร้อมเรียนรู้เทคนิคการทำหัตถกรรมโบราณ..."
+            desc: "ชวนเดินลัดเลาะตามตรอกเก่า ชมกรรมวิธีการทำขันลงหิน และลิ้มรสอาหารพื้นบ้านที่หาทานยากในกิจกรรมเดินเที่ยวรอบชุมชนประวัติศาสตร์"
+        },
+        {
+            title: "ประกาศ: ปรับปรุงท่าเรือสถานีรถไฟธนบุรีชั่วคราว",
+            date: "05 ก.พ. 2569",
+            cat: "update",
+            img: "https://lh3.googleusercontent.com/aida-public/AB6AXuA-BUpmgeOJesl9Y2nz5lTqyMKW8R0Sf44gdSajUnwU4g2lDz1PwciT8gU0EmI4cGe5RH2Y0I60RDSm0PgQq6zZ1F2oQqJ44D3hBI2Qz3w--RPZX4bp2UTlf74A3U9IH6UGH3kKTT5lY0wtY7eOqfObWWN-EjxPGd8tHGYc2_J-7Vl0CoCOtO7W9jpISROF2KBtA8cuZcxgoBMREi_l8HWAW6fptNDFQlgQByhzWApsVATc4Y1a8hEnh0De13yCwhvgckn1oZtZ_bU",
+            desc: "เพื่อความปลอดภัยของผู้โดยสาร กรมเจ้าท่าแจ้งปิดปรับปรุงท่าเรือสถานีรถไฟธนบุรีชั่วคราวระหว่างวันที่ 10-20 มีนาคมนี้"
+        },
+        {
+            title: "เวิร์กชอปงานช่างสิบหมู่: เขียนลายรดน้ำแบบโบราณ",
+            date: "01 ก.พ. 2569",
+            cat: "event",
+            img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCCFvGC8euzgiCF0_lAWBoEpKlLoMuuiLXq-rwRhZ5LHL7Jdg0lr2BFZ6rtxPWgYdSoRR5rlkIoVOkkx_h3Ms7DoYUZo_E_KMZennirSZqx-5D-_5LF3eSN9MkjlwhCczbfNb1knHBClgP9mjsyo99rxsLLCBHmElGj9-Ut1Ndu3gpD0hytKrvKT0KMxy6iQjpa9cUsqKoCpfUhw5aNuaeMXjF7luQKL__x22M1L7hZYC5Z0e9IjRbhZccWt59t2O1W-UmtLAGQnjc2",
+            desc: "ขอเชิญคนรุ่นใหม่ร่วมเรียนรู้อัตลักษณ์ไทยผ่านกิจกรรมเขียนลายรดน้ำโดยวิทยากรผู้เชี่ยวชาญ ณ ศูนย์การเรียนรู้วัฒนธรรมบางกอกน้อย"
         }
     ];
 
@@ -143,22 +164,22 @@
         grid.innerHTML = newsData
             .filter(item => filter === 'all' || item.cat === filter)
             .map(item => `
-                <article class="news-card bg-white rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl border border-slate-100 flex flex-col h-full group cursor-pointer">
-                    <div class="relative h-60 overflow-hidden">
-                        <img src="${item.img}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <article class="news-card bg-white rounded-[2.5rem] overflow-hidden shadow-xl hover:shadow-2xl border border-slate-50 flex flex-col h-full group cursor-pointer">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="${item.img}" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-125">
                         <div class="absolute top-6 left-6 px-4 py-1.5 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-black text-primary uppercase tracking-widest shadow-sm">
-                            ${item.cat === 'event' ? 'Event' : 'Announcement'}
+                            ${item.cat === 'event' ? 'กิจกรรม' : 'ประกาศ'}
                         </div>
                     </div>
-                    <div class="p-8 flex flex-col flex-grow">
-                        <time class="text-xs font-bold text-slate-400 mb-2 flex items-center gap-2">
-                            <span class="material-symbols-outlined text-xs">calendar_today</span> ${item.date}
+                    <div class="p-10 flex flex-col flex-grow">
+                        <time class="text-xs font-bold text-slate-400 mb-3 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">calendar_today</span> ${item.date}
                         </time>
-                        <h3 class="text-xl font-black text-secondary mb-4 leading-tight group-hover:text-primary transition-colors">${item.title}</h3>
-                        <p class="text-slate-500 text-sm leading-relaxed mb-6 line-clamp-3 font-light">${item.desc}</p>
-                        <div class="mt-auto pt-4 border-t border-slate-50 flex items-center justify-between text-primary font-bold text-xs uppercase tracking-widest">
-                            <span>อ่านรายละเอียด</span>
-                            <span class="material-symbols-outlined">arrow_forward</span>
+                        <h3 class="text-2xl font-black text-secondary mb-4 leading-tight group-hover:text-primary transition-colors">${item.title}</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed mb-8 line-clamp-3 font-light">${item.desc}</p>
+                        <div class="mt-auto pt-6 border-t border-slate-100 flex items-center justify-between text-primary font-black text-xs uppercase tracking-[0.2em]">
+                            <span>อ่านรายละเอียดเพิ่มเติม</span>
+                            <span class="material-symbols-outlined transition-transform group-hover:translate-x-2"></span>
                         </div>
                     </div>
                 </article>
@@ -166,12 +187,16 @@
     }
 
     function filterNews(cat) {
-        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+            btn.classList.add('text-slate-400');
+        });
         event.target.classList.add('active');
+        event.target.classList.remove('text-slate-400');
         renderNews(cat);
     }
 
-    // Smooth Navigation (ห้ามขาด)
+    // ระบบ Smooth Navigation (คงความขลัง)
     document.querySelectorAll('a[href]').forEach(link => {
         link.addEventListener('click', function(e) {
             const dest = this.getAttribute('href');
@@ -185,7 +210,7 @@
 
     window.addEventListener('DOMContentLoaded', () => {
         renderNews();
-        setTimeout(() => document.getElementById('page-loader').classList.add('fade-out'), 500);
+        setTimeout(() => document.getElementById('page-loader').classList.add('fade-out'), 800);
     });
 </script>
 </body>
