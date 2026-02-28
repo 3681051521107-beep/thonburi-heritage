@@ -57,7 +57,7 @@
         #page-loader.fade-out { opacity: 0; }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-hidden font-display">
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-hidden font-display text-left">
 
 <div id="page-loader">
     <div class="flex flex-col items-center gap-4">
@@ -67,7 +67,7 @@
 </div>
 
 <div class="flex h-screen flex-col">
-    <header class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark px-6 py-3 z-20 shadow-sm font-display">
+    <header class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark px-6 py-3 z-20 shadow-sm font-display text-left">
         <div class="flex items-center gap-8">
             <div class="flex items-center gap-3">
                 <div class="size-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg">
@@ -94,7 +94,7 @@
 
     <main class="flex flex-1 overflow-hidden">
         <aside class="w-full md:w-[40%] flex flex-col border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark z-10 shadow-xl">
-            <div class="p-8 border-b border-slate-100 dark:border-slate-800">
+            <div class="p-8 border-b border-slate-100 dark:border-slate-800 text-left">
                 <span class="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-black rounded-full mb-3 uppercase tracking-widest">Walking Tour</span>
                 <h1 class="text-3xl font-black text-wood dark:text-gold">เลาะคลอง ส่องวัดเก่า</h1>
                 <p class="text-slate-500 text-sm mt-2 flex items-center gap-2">
@@ -104,7 +104,7 @@
             <div class="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-8" id="stops-container"></div>
         </aside>
 
-        <section class="hidden md:block flex-1 relative bg-slate-200 overflow-hidden">
+        <section class="hidden md:block flex-1 relative bg-slate-200 overflow-hidden text-left">
             <div id="map-canvas"></div>
         </section>
     </main>
@@ -116,31 +116,41 @@
         <button onclick="closeDetail()" class="absolute top-6 left-6 z-10 size-12 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
             <span class="material-symbols-outlined text-secondary dark:text-white">close</span>
         </button>
-        <div id="detail-content" class="h-full overflow-y-auto custom-scrollbar"></div>
+        <div id="detail-content" class="h-full overflow-y-auto custom-scrollbar text-left"></div>
     </div>
 </div>
 
 <script>
     const placesData = [
         {
-            id: 'wat-suwan',
-            title: "วัดสุวรรณาราม",
-            category: "วัดสำคัญทางประวัติศาสตร์",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBhtM-hqxa7kOPaOQYIKz8cVhTNOEXW66oRP8d7SOghQALnY_-SIyS4nmBThe-jzMnYL8A54RmipTVZvKu6GD_8UyDqa2Tyy7XbZaUy3ehKmCkZso5DUBCdP5Gk8yqVDOAlQ6K9uFD-Hxd7eHYdryKg2_CWZumv3CoSVhAnR6SIpoI8tTY_fmmbpgue5Fnqx3Qj4HzZyseZ3Tm4hFE6sYYBfoLiJbSuQNlpXB2hMt9oHEn7a8RgZjSDqHUC25xaNPQE-CLz3F-s9nA",
-            time: "08:00 - 17:00 น.",
-            price: "เข้าชมฟรี",
-            desc: "วัดโบราณสมัยอยุธยาเดิมชื่อ วัดทอง ต่อมาในสมัยรัชกาลที่ 1 ทรงบูรณปฏิสังขรณ์ใหม่ จุดเด่นคือภาพทศชาติชาดกในพระอุโบสถที่เป็นผลงานประชันฝีมือช่างสิบหมู่ยุคทอง",
-            lat: 13.7611, lng: 100.4789
-        },
-        {
             id: 'wat-rakhang',
             title: "วัดระฆังโฆสิตาราม",
             category: "วัดสำคัญทางประวัติศาสตร์",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC1bUKUTZQUbkgGD2ko8-YowRA7jHdCWfEBfyB_zMwhNofM0n3kbzVMklMJKnV0JbaX-KsuYbMrDiGKh30IxRGheP0_8ArEUAd_1jzfQf2Oa7MgdgCg4mulF4KIwGfR6WPw3Crgc-Lx4BLkh53izWD-b04czknBtMZC87hAgUyM1Iz9apyAZb7HbJqk07_FXbn5hYaBDrM7A-6djjADzitHKXZEgr_CZQ9vzR9FjvRBDgQNw283-RQNMksj0MeqxnF1jBZWdl_rhg8",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAO2bvq4j3pKa85BGgb0iom1LxPt0D4VhQHD9CPCI97O3jHk5Jpz1BctRofpjW2iVPxAsGk-wrLw1V7e1E8Y86GDcriJO92BefJ5YxpAixvfOMu0cs5yfqDaOLmwzBRR0pnUbKYX1iwVue1EkWn9ly9YWv_DxaVDu3eJpiZ2_AEcWWXIlpPIgdmtDx1rzTw5AFm5QCNzV7jjJnJKKIJYavEMCpbIXTB7qwCQdtCe00V8MYmh_8gOSWDjrdAM0Es9d8-aYs_ID-laPM",
             time: "08:00 - 17:00 น.",
             price: "เข้าชมฟรี",
             desc: "วัดระฆังโฆสิตารามวรมหาวิหาร เป็นวัดโบราณสร้างมาตั้งแต่สมัยอยุธยา เดิมชื่อวัดบางหว้าใหญ่ รัชกาลที่ 1 ได้ทรงบูรณปฏิสังขรณ์และทรงขุดพบระฆังโบราณ จึงเป็นที่มาของชื่อวัดในปัจจุบัน",
             lat: 13.7531, lng: 100.4855
+        },
+        {
+            id: 'rai-khan',
+            title: "ชุมชนตลาดไร้คาน",
+            category: "ชุมชนเก่าแก่",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAT3ztVMcOWNIAd3p7V2Yr-2ZkZzQI49hM-9fmfDFNJcXcGRZww6rweAWsDdOQxmH9ormymp4fslCMO-nPrffbUHkFmUs_gP-77wml4C9faTwdFyrmHXwA-Banvyc2D79pfFoMrT9fvBVJmM-68Akr9L1wCZtsCbPUbYJxC7TvEGtZi0GkCCW15zANalerSIswEbb7yXIc7xo5ueAE_6taKqGtRI94aFYlyVolx2q6egQ7B8kI45UyqXBtJPSvwx833oa97NHL3Qtk",
+            time: "08:00 - 15:00 น. (เสาร์-อาทิตย์)",
+            price: "เข้าชมฟรี",
+            desc: "ย่านการค้าเก่าแก่ริมน้ำที่มีสถาปัตยกรรมไม้แบบดั้งเดิมที่หาดูได้ยาก เป็นจุดรวมตัวของอาหารพื้นบ้านและวัฒนธรรมท้องถิ่นที่เรียบง่ายแต่ทรงพลัง",
+            lat: 13.7565, lng: 100.4845
+        },
+        {
+            id: 'thonburi-station',
+            title: "สถานีรถไฟธนบุรี",
+            category: "สถานที่ประวัติศาสตร์",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA-BUpmgeOJesl9Y2nz5lTqyMKW8R0Sf44gdSajUnwU4g2lDz1PwciT8gU0EmI4cGe5RH2Y0I60RDSm0PgQq6zZ1F2oQqJ44D3hBI2Qz3w--RPZX4bp2UTlf74A3U9IH6UGH3kKTT5lY0wtY7eOqfObWWN-EjxPGd8tHGYc2_J-7Vl0CoCOtO7W9jpISROF2KBtA8cuZcxgoBMREi_l8HWAW6fptNDFQlgQByhzWApsVATc4Y1a8hEnh0De13yCwhvgckn1oZtZ_bU",
+            time: "04:00 - 22:00 น.",
+            price: "เข้าชมฟรี",
+            desc: "อดีตสถานีปลายทางของรถไฟสายมรณะ มีสถาปัตยกรรมที่สวยงามและเป็นจุดเชื่อมต่อการเดินทางสำคัญในย่านบางกอกน้อย",
+            lat: 13.7595, lng: 100.4830
         },
         {
             id: 'baan-bu',
@@ -153,6 +163,26 @@
             lat: 13.7580, lng: 100.4795
         },
         {
+            id: 'wat-suwan',
+            title: "วัดสุวรรณาราม",
+            category: "วัดสำคัญทางประวัติศาสตร์",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBhtM-hqxa7kOPaOQYIKz8cVhTNOEXW66oRP8d7SOghQALnY_-SIyS4nmBThe-jzMnYL8A54RmipTVZvKu6GD_8UyDqa2Tyy7XbZaUy3ehKmCkZso5DUBCdP5Gk8yqVDOAlQ6K9uFD-Hxd7eHYdryKg2_CWZumv3CoSVhAnR6SIpoI8tTY_fmmbpgue5Fnqx3Qj4HzZyseZ3Tm4hFE6sYYBfoLiJbSuQNlpXB2hMt9oHEn7a8RgZjSDqHUC25xaNPQE-CLz3F-s9nA",
+            time: "08:00 - 17:00 น.",
+            price: "เข้าชมฟรี",
+            desc: "วัดโบราณสมัยอยุธยาเดิมชื่อ วัดทอง ต่อมาในสมัยรัชกาลที่ 1 ทรงบูรณปฏิสังขรณ์ใหม่ จุดเด่นคือภาพทศชาติชาดกในพระอุโบสถที่เป็นผลงานประชันฝีมือช่างสิบหมู่ยุคทอง",
+            lat: 13.7611, lng: 100.4789
+        },
+        {
+            id: 'royal-barges',
+            title: "พิพิธภัณฑ์เรือพระราชพิธี",
+            category: "สถานที่ประวัติศาสตร์",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCToBRHblHszmIKO7sui0m4k8D1QOeQrImG-kPd1hxi5sUGdxXOPciOn3JTM0EaSQHo9BgD_BmDlC8jd8aOFHv2PW-I7MrjmzncEwfEVI6VxJ1V8hrbMqcfhfzITaJmRXC4j5GOWprZEDkwMTivtPX3ehwAvDDlvdm_cgaTT1FY4SMqg4tzemDOzgyCARTqh0YtCRNK4f2Jk1_1jTsQT54-hlVrymrKW1qMXjmMWwYR9IRSOKiME-MuOfhlCSmSDijl3z8q7z7Gwuw",
+            time: "09:00 - 16:30 น.",
+            price: "คนไทย 20 บาท",
+            desc: "จัดแสดงเรือพระที่นั่งสำคัญที่ใช้ในพระราชพิธีพยุหยาตราทางชลมารค สะท้อนถึงความเกรียงไกรและงานศิลปกรรมชั้นสูงของช่างสิบหมู่ไทย",
+            lat: 13.7617, lng: 100.4845
+        },
+        {
             id: 'wat-arun',
             title: "วัดอรุณราชวราราม",
             category: "วัดสำคัญทางประวัติศาสตร์",
@@ -161,16 +191,6 @@
             price: "คนไทยฟรี",
             desc: "พระปรางค์ริมน้ำเจ้าพระยาสัญลักษณ์แห่งความรุ่งโรจน์ของกรุงธนบุรี ประดับด้วยกระเบื้องเคลือบสีโบราณและรูปปั้นยักษ์วัดแจ้ง",
             lat: 13.7437, lng: 100.4889
-        },
-        {
-            id: 'thonburi-station',
-            title: "สถานีรถไฟธนบุรี",
-            category: "สถานที่ประวัติศาสตร์",
-            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuA-BUpmgeOJesl9Y2nz5lTqyMKW8R0Sf44gdSajUnwU4g2lDz1PwciT8gU0EmI4cGe5RH2Y0I60RDSm0PgQq6zZ1F2oQqJ44D3hBI2Qz3w--RPZX4bp2UTlf74A3U9IH6UGH3kKTT5lY0wtY7eOqfObWWN-EjxPGd8tHGYc2_J-7Vl0CoCOtO7W9jpISROF2KBtA8cuZcxgoBMREi_l8HWAW6fptNDFQlgQByhzWApsVATc4Y1a8hEnh0De13yCwhvgckn1oZtZ_bU",
-            time: "04:00 - 22:00 น.",
-            price: "เข้าชมฟรี",
-            desc: "อดีตสถานีปลายทางของรถไฟสายมรณะ มีสถาปัตยกรรมที่สวยงามและเป็นจุดเชื่อมต่อการเดินทางสำคัญในย่านบางกอกน้อย",
-            lat: 13.7595, lng: 100.4830
         }
     ];
 
@@ -202,12 +222,12 @@
             marker.on('click', () => showDetail(place.id));
 
             const stopHtml = `
-                <div onclick="focusPlace('${place.id}')" class="relative flex gap-6 cursor-pointer group">
+                <div onclick="focusPlace('${place.id}')" class="relative flex gap-6 cursor-pointer group text-left">
                     ${index < placesData.length - 1 ? '<div class="route-line"></div>' : ''}
                     <div class="z-10 size-10 bg-primary border-4 border-white dark:border-slate-800 rounded-full flex items-center justify-center text-white font-black shadow-md group-hover:scale-110 transition-transform">
                         ${index + 1}
                     </div>
-                    <div class="flex-1 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 p-5 rounded-2xl hover:shadow-2xl transition-all border-l-4 border-l-primary shadow-sm text-left">
+                    <div class="flex-1 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 p-5 rounded-2xl hover:shadow-2xl transition-all border-l-4 border-l-primary shadow-sm">
                         <h3 class="font-bold text-wood dark:text-white group-hover:text-primary transition-colors text-lg">${place.title}</h3>
                         <p class="text-xs text-slate-500 mt-1 uppercase tracking-widest">${place.category}</p>
                     </div>
@@ -254,7 +274,7 @@
                         <p class="text-sm font-bold text-wood dark:text-white">${data.price}</p>
                     </div>
                 </div>
-                <div class="space-y-4 mb-10">
+                <div class="space-y-4 mb-10 text-left">
                     <h4 class="font-black text-secondary dark:text-gold text-lg border-b pb-2">คำอธิบาย</h4>
                     <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-lg text-justify">${data.desc}</p>
                 </div>
@@ -271,16 +291,16 @@
 
     function closeDetail() {
         document.getElementById('detail-panel').classList.add('translate-x-full');
-        setTimeout(() => document.getElementById('place-detail').classList.add('hidden'), 500);
+        setTimeout(() => {
+            document.getElementById('place-detail').classList.add('hidden');
+        }, 500);
     }
 
     function checkUrlParameters() {
         const urlParams = new URLSearchParams(window.location.search);
         const placeId = urlParams.get('id');
         if (placeId) {
-            setTimeout(() => {
-                focusPlace(placeId);
-            }, 1200); 
+            setTimeout(() => { focusPlace(placeId); }, 1200); 
         }
     }
 
@@ -299,6 +319,5 @@
         checkUrlParameters();
     });
 </script>
-
 </body>
 </html>
