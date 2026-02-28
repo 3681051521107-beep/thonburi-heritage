@@ -5,7 +5,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Admin Dashboard - Thonburi Heritage</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Noto+Sans+Thai:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;900&family=Noto+Sans+Thai:wght@300;400;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet"/>
     <script id="tailwind-config">
         tailwind.config = {
@@ -24,178 +24,247 @@
         }
     </script>
     <style>
-        body { font-family: 'Noto Sans Thai', sans-serif; }
-        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #ec5b13; border-radius: 10px; }
-        .modal-active { display: flex !important; animation: fadeIn 0.2s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    </style>
+    body { font-family: 'Noto Sans Thai', sans-serif; }
+    .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #ec5b13; border-radius: 10px; }
+    .modal-active { display: flex !important; animation: fadeIn 0.2s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    /* แก้ไขส่วนที่ติดเหลือง: เปลี่ยน @apply เป็น Standard CSS */
+    input, textarea, select { 
+        border-color: #e2e8f0; /* border-slate-200 */
+        border-radius: 0.75rem; /* rounded-xl */
+        font-size: 0.875rem; /* text-sm */
+        outline: none;
+        transition: all 0.2s;
+    }
+    input:focus, textarea:focus, select:focus {
+        border-color: #ec5b13 !important; /* focus:border-primary */
+        box-shadow: 0 0 0 3px rgba(236, 91, 19, 0.2); /* focus:ring-primary */
+    }
+</style>
 </head>
-<body class="bg-background-light dark:bg-slate-900 text-slate-900 dark:text-slate-100 font-display">
+<body class="bg-background-light text-slate-900 font-display">
 
 <div class="flex h-screen overflow-hidden">
     <aside class="w-72 bg-wood-brown text-white flex flex-col shrink-0 shadow-xl">
-        <div class="p-6 flex items-center gap-3 border-b border-white/10">
-            <div class="bg-primary rounded-lg p-2 flex items-center justify-center">
+        <div class="p-8 flex items-center gap-3 border-b border-white/10">
+            <div class="bg-primary rounded-xl p-2 flex items-center justify-center shadow-lg">
                 <span class="material-symbols-outlined text-white"></span>
             </div>
-            <h1 class="text-lg font-bold leading-tight">Admin Portal</h1>
+            <h1 class="text-xl font-black leading-tight tracking-tighter uppercase">Admin Portal</h1>
         </div>
-        <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-2 custom-scrollbar">
-            <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-white shadow-lg">
-                <span class="material-symbols-outlined"></span>
-                <span class="text-sm font-medium">แผงควบคุม (Dashboard)</span>
+        <nav class="flex-1 overflow-y-auto py-8 px-4 space-y-2 custom-scrollbar">
+            <a href="#" class="flex items-center gap-3 px-5 py-3.5 rounded-2xl bg-primary text-white shadow-lg shadow-primary/20 transition-all">
+                <span class="material-symbols-outlined text-xl"></span>
+                <span class="text-sm font-bold">แผงควบคุมหลัก</span>
             </a>
-            <div class="pt-4 pb-2 px-4"><p class="text-[10px] uppercase tracking-widest text-white/40 font-bold">Quick Actions</p></div>
-            <button onclick="openModal('D1')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 text-white/80 transition-all text-left">
-                <span class="material-symbols-outlined"></span>
-                <span class="text-sm font-medium">เพิ่มข้อมูลแหล่งท่องเที่ยว (D1)</span>
+            <div class="pt-6 pb-2 px-5"><p class="text-[10px] uppercase tracking-[0.2em] text-white/40 font-black">จัดการเนื้อหา</p></div>
+            <button onclick="openModal('D1')" class="w-full flex items-center gap-3 px-5 py-3.5 rounded-2xl hover:bg-white/5 text-white/70 hover:text-white transition-all text-left group">
+                <span class="material-symbols-outlined group-hover:text-primary transition-colors"></span>
+                <span class="text-sm font-medium">แหล่งมรดก (D1)</span>
             </button>
-            <button onclick="openModal('D2')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 text-white/80 transition-all text-left">
-                <span class="material-symbols-outlined"></span>
-                <span class="text-sm font-medium">เพิ่มเส้นทางท่องเที่ยว (D2)</span>
+            <button onclick="openModal('D2')" class="w-full flex items-center gap-3 px-5 py-3.5 rounded-2xl hover:bg-white/5 text-white/70 hover:text-white transition-all text-left group">
+                <span class="material-symbols-outlined group-hover:text-primary transition-colors"></span>
+                <span class="text-sm font-medium">เส้นทางท่องเที่ยว (D2)</span>
             </button>
-            <button onclick="openModal('D3')" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 text-white/80 transition-all text-left">
-                <span class="material-symbols-outlined"></span>
-                <span class="text-sm font-medium">เพิ่มเนื้อหาประชาสัมพันธ์ (D3)</span>
+            <button onclick="openModal('D3')" class="w-full flex items-center gap-3 px-5 py-3.5 rounded-2xl hover:bg-white/5 text-white/70 hover:text-white transition-all text-left group">
+                <span class="material-symbols-outlined group-hover:text-primary transition-colors"></span>
+                <span class="text-sm font-medium">ข่าวสาร/กิจกรรม (D3)</span>
             </button>
         </nav>
-        <div class="p-4 border-t border-white/10">
-            <div onclick="window.location.href='index.html'" class="flex items-center gap-3 p-2 rounded-lg hover:bg-red-500/20 cursor-pointer transition-colors group">
+        <div class="p-6 border-t border-white/10">
+            <div onclick="window.location.href='index.html'" class="flex items-center gap-3 p-3 rounded-2xl hover:bg-red-500/10 cursor-pointer transition-all group">
                 <img class="size-10 rounded-full border-2 border-primary/50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTbFAXkh0EWkNcVHfBaxv7UXOFO6ZbSDiH-ctSWI85tOJ2VubBTCHnreasXnTOUyMCATPaJeI717Iw0PdPcqqktBNxjjyqm8OX7eHYBkOpY3D8aPPxFxU_ecFcAzKnvYJDQmvHVxZoihMsXTaVMQgQJg3EV-J5JI0RcPHrHqut5v8mvlZ4zRx4BD-hNfiQW6y6qde0rXy6mmkGH8bKDpMmc6B6aZMgHoehreCm8lnJl3Ztaf3EoB6XBtEw25anJIGL1RSz-wSZy_g"/>
                 <div class="flex-1 min-w-0 text-xs text-left">
-                    <p class="font-semibold truncate">System Admin</p>
-                    <p class="opacity-50 truncate">admin@heritage.go.th</p>
+                    <p class="font-bold truncate text-white">System Admin</p>
+                    <p class="opacity-40 truncate">v.2026.01</p>
                 </div>
-                <span class="material-symbols-outlined text-white/40 group-hover:text-white">logout</span>
+                <span class="material-symbols-outlined text-white/20 group-hover:text-red-400">logout</span>
             </div>
         </div>
     </aside>
 
     <main class="flex-1 flex flex-col overflow-hidden">
-        <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 shrink-0">
-            <span class="font-semibold text-wood-brown">แผงควบคุมหลัก / จัดการข้อมูลเบ็ดเสร็จ</span>
-            <div class="flex gap-4">
-                <a href="index.html" target="_blank" class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm">visibility</span> ดูหน้าเว็บจริง
-                </a>
+        <header class="h-20 bg-white border-b border-slate-200 flex items-center justify-between px-10 shrink-0">
+            <div class="flex items-center gap-2">
+                <span class="text-slate-400 font-medium">แผงควบคุมหลัก</span>
+                <span class="text-slate-300">/</span>
+                <span class="font-bold text-wood-brown">จัดการมรดกดิจิทัล</span>
             </div>
+            <a href="index.html" target="_blank" class="flex items-center gap-2 px-5 py-2.5 bg-slate-100 hover:bg-slate-200 rounded-full text-xs font-black transition-all text-slate-600">
+                <span class="material-symbols-outlined text-sm"></span> ดูหน้าเว็บจริง
+            </a>
         </header>
 
-        <div class="flex-1 overflow-y-auto p-8 space-y-8 custom-scrollbar">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-5">
-                    <div class="p-4 bg-orange-100 text-primary rounded-xl"><span class="material-symbols-outlined text-3xl">museum</span></div>
-                    <div><p class="text-xs font-bold text-slate-400 uppercase">มรดก (D1)</p><p class="text-2xl font-black">1,284 รายการ</p></div>
+        <div class="flex-1 overflow-y-auto p-10 space-y-10 custom-scrollbar">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 flex items-center gap-6">
+                    <div class="p-4 bg-orange-50 text-primary rounded-2xl"><span class="material-symbols-outlined text-4xl"></span></div>
+                    <div><p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">มรดก (D1)</p><p class="text-3xl font-black text-secondary">1,284</p></div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-5">
-                    <div class="p-4 bg-blue-100 text-blue-600 rounded-xl"><span class="material-symbols-outlined text-3xl">directions_walk</span></div>
-                    <div><p class="text-xs font-bold text-slate-400 uppercase">เส้นทาง (D2)</p><p class="text-2xl font-black">48 เส้นทาง</p></div>
+                <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 flex items-center gap-6">
+                    <div class="p-4 bg-blue-50 text-blue-500 rounded-2xl"><span class="material-symbols-outlined text-4xl"></span></div>
+                    <div><p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">เส้นทาง (D2)</p><p class="text-3xl font-black text-secondary">48</p></div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-5">
-                    <div class="p-4 bg-green-100 text-green-600 rounded-xl"><span class="material-symbols-outlined text-3xl">article</span></div>
-                    <div><p class="text-xs font-bold text-slate-400 uppercase">ข่าวสาร (D3)</p><p class="text-2xl font-black">24 อัปเดต</p></div>
+                <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 flex items-center gap-6">
+                    <div class="p-4 bg-green-50 text-green-500 rounded-2xl"><span class="material-symbols-outlined text-4xl"></span></div>
+                    <div><p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">ข่าวสาร (D3)</p><p class="text-3xl font-black text-secondary">24</p></div>
                 </div>
             </div>
 
-            <div class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
-                <div class="p-6 border-b flex items-center justify-between bg-slate-50/50">
-                    <h3 class="text-xl font-bold text-wood-brown">การอัปเดตล่าสุดในระบบ</h3>
+            <div class="bg-white rounded-[2.5rem] shadow-xl border border-slate-200 overflow-hidden">
+                <div class="p-8 border-b flex items-center justify-between bg-slate-50/30">
+                    <h3 class="text-xl font-black text-wood-brown uppercase tracking-tighter">การอัปเดตล่าสุดในระบบ</h3>
+                    <span class="text-[10px] font-bold text-slate-400">ข้อมูลอัปเดตแบบเรียลไทม์</span>
                 </div>
-                <table class="w-full text-left">
-                    <thead class="bg-slate-50 text-slate-400 text-[10px] font-black uppercase tracking-widest">
-                        <tr>
-                            <th class="px-8 py-4">หมวดหมู่</th>
-                            <th class="px-8 py-4">รายการ</th>
-                            <th class="px-8 py-4">สถานะ</th>
-                            <th class="px-8 py-4 text-right">ดำเนินการ</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-slate-100">
-                        <tr class="hover:bg-slate-50 transition-colors">
-                            <td class="px-8 py-4 text-xs font-bold text-primary uppercase">D1 - แหล่งมรดก</td>
-                            <td class="px-8 py-4 font-bold text-wood-brown">วัดระฆังโฆสิตาราม</td>
-                            <td class="px-8 py-4"><span class="px-2 py-1 bg-green-100 text-green-600 text-[10px] font-bold rounded-full">เผยแพร่แล้ว</span></td>
-                            <td class="px-8 py-4 text-right">
-                                <button onclick="openModal('D1')" class="p-2 text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-50 transition-colors">
-                            <td class="px-8 py-4 text-xs font-bold text-blue-500 uppercase">D2 - เส้นทาง</td>
-                            <td class="px-8 py-4 font-bold text-wood-brown">เลาะคลอง ส่องวัดเก่า</td>
-                            <td class="px-8 py-4"><span class="px-2 py-1 bg-green-100 text-green-600 text-[10px] font-bold rounded-full">ใช้งาน</span></td>
-                            <td class="px-8 py-4 text-right">
-                                <button onclick="openModal('D2')" class="p-2 text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-50 transition-colors">
-                            <td class="px-8 py-4 text-xs font-bold text-green-500 uppercase">D3 - ข่าวสาร</td>
-                            <td class="px-8 py-4 font-bold text-wood-brown">เทศกาลล่องเรือชมไฟ 2026</td>
-                            <td class="px-8 py-4"><span class="px-2 py-1 bg-orange-100 text-orange-600 text-[10px] font-bold rounded-full">ฉบับร่าง</span></td>
-                            <td class="px-8 py-4 text-right">
-                                <button onclick="openModal('D3')" class="p-2 text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="bg-slate-50 text-slate-400 text-[10px] font-black uppercase tracking-[0.2em]">
+                            <tr>
+                                <th class="px-10 py-5">หมวดหมู่</th>
+                                <th class="px-10 py-5">รายการ</th>
+                                <th class="px-10 py-5">สถานะการแสดงผล</th>
+                                <th class="px-10 py-5 text-right">จัดการ</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="px-10 py-5 text-[10px] font-black text-primary uppercase">D1 - แหล่งมรดก</td>
+                                <td class="px-10 py-5 font-bold text-secondary text-lg">วัดระฆังโฆสิตาราม</td>
+                                <td class="px-10 py-5"><span class="px-4 py-1.5 bg-green-100 text-green-600 text-[10px] font-black rounded-full uppercase">Published</span></td>
+                                <td class="px-10 py-5 text-right">
+                                    <button onclick="openModal('D1')" class="size-10 bg-slate-100 hover:bg-primary hover:text-white rounded-full transition-all"><span class="material-symbols-outlined text-sm">edit</span></button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="px-10 py-5 text-[10px] font-black text-blue-500 uppercase">D2 - เส้นทาง</td>
+                                <td class="px-10 py-5 font-bold text-secondary text-lg">เลาะคลอง ส่องวัดเก่า</td>
+                                <td class="px-10 py-5"><span class="px-4 py-1.5 bg-blue-100 text-blue-600 text-[10px] font-black rounded-full uppercase">Active</span></td>
+                                <td class="px-10 py-5 text-right">
+                                    <button onclick="openModal('D2')" class="size-10 bg-slate-100 hover:bg-blue-500 hover:text-white rounded-full transition-all"><span class="material-symbols-outlined text-sm">edit</span></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </main>
 </div>
 
 <div id="master-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
-    <div class="absolute inset-0 bg-wood-brown/60 backdrop-blur-sm" onclick="closeModal()"></div>
-    <div class="relative bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-[2.5rem] shadow-2xl p-8 md:p-10 custom-scrollbar">
-        <div class="flex justify-between items-center mb-8 border-b pb-4">
-            <div>
-                <h2 id="modal-title" class="text-2xl font-black text-wood-brown flex items-center gap-3">
-                    <span id="modal-icon" class="material-symbols-outlined text-primary text-3xl">edit_square</span>
-                    <span id="modal-type-label">แก้ไขข้อมูล</span>
-                </h2>
-                <p id="modal-subtitle" class="text-xs text-slate-400 font-bold uppercase tracking-widest mt-1">Cultural Heritage Management</p>
+    <div class="absolute inset-0 bg-wood-brown/80 backdrop-blur-md" onclick="closeModal()"></div>
+    <div class="relative bg-white w-full max-w-3xl max-h-[90vh] overflow-hidden rounded-[3rem] shadow-2xl flex flex-col">
+        <div class="p-8 md:p-10 border-b flex justify-between items-center shrink-0">
+            <div class="flex items-center gap-4">
+                <div class="size-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+                    <span id="modal-icon" class="material-symbols-outlined text-3xl">edit_square</span>
+                </div>
+                <div>
+                    <h2 id="modal-type-label" class="text-2xl font-black text-wood-brown">จัดการข้อมูล</h2>
+                    <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Digital Archive Management System</p>
+                </div>
             </div>
-            <button onclick="closeModal()" class="text-slate-400 hover:text-red-500 transition-colors">
+            <button onclick="closeModal()" class="size-10 bg-slate-100 hover:bg-red-500 hover:text-white rounded-full transition-all flex items-center justify-center">
                 <span class="material-symbols-outlined">close</span>
             </button>
         </div>
 
-        <form id="dynamic-form" class="space-y-6">
-            <div id="form-D1" class="hidden space-y-4">
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="col-span-2">
-                        <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">ชื่อแหล่งมรดก</label>
-                        <input type="text" class="w-full rounded-xl border-slate-200" placeholder="ระบุชื่อสถานที่...">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">ละติจูด</label>
-                        <input type="text" class="w-full rounded-xl border-slate-200" placeholder="13.7xxx">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">ลองจิจูด</label>
-                        <input type="text" class="w-full rounded-xl border-slate-200" placeholder="100.4xxx">
+        <div class="flex-1 overflow-y-auto p-8 md:p-10 custom-scrollbar">
+            <form id="dynamic-form" class="space-y-8">
+                <div id="form-D1" class="hidden space-y-8">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="col-span-2">
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">ชื่อแหล่งมรดก (Title)</label>
+                            <input type="text" class="w-full" placeholder="เช่น วัดสุวรรณาราม">
+                        </div>
+                        <div class="col-span-2">
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">คำโปรยสั้น (Subtitle)</label>
+                            <input type="text" class="w-full" placeholder="เช่น พระอารามหลวงชั้นโทที่มีภาพจิตรกรรมฝาผนัง...">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">เขต/พื้นที่ (District)</label>
+                            <input type="text" class="w-full" placeholder="เช่น เขตบางกอกน้อย">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">รหัส ID (Slug)</label>
+                            <input type="text" class="w-full" placeholder="เช่น wat-suwan">
+                        </div>
+                        <div class="col-span-2">
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">ประวัติและความสำคัญ (Description - HTML Supported)</label>
+                            <textarea rows="5" class="w-full" placeholder="ใส่ประวัติแบบละเอียด..."></textarea>
+                        </div>
+                        <div class="col-span-2">
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">รูปภาพหลัก (Main Image URL)</label>
+                            <input type="url" class="w-full" placeholder="http://...">
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div id="form-D2" class="hidden space-y-4">
-                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">ชื่อเส้นทางท่องเที่ยว</label>
-                <input type="text" class="w-full rounded-xl border-slate-200" placeholder="ระบุชื่อเส้นทาง...">
-                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">รายการจุดแวะพัก (Comma Separated)</label>
-                <textarea class="w-full rounded-xl border-slate-200" placeholder="จุดที่ 1, จุดที่ 2, จุดที่ 3"></textarea>
-            </div>
+                <div id="form-D2" class="hidden space-y-6">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="col-span-2">
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">ชื่อจุดแวะพัก/เส้นทาง</label>
+                            <input type="text" class="w-full" placeholder="ระบุชื่อสถานที่บนแผนที่">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">ละติจูด (Lat)</label>
+                            <input type="text" class="w-full" placeholder="13.7531">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">ลองจิจูด (Lng)</label>
+                            <input type="text" class="w-full" placeholder="100.4855">
+                        </div>
+                        <div class="col-span-2">
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">หมวดหมู่ (Category)</label>
+                            <select class="w-full">
+                                <option>วัดสำคัญทางประวัติศาสตร์</option>
+                                <option>ชุมชนเก่าแก่</option>
+                                <option>สถานที่ประวัติศาสตร์</option>
+                            </select>
+                        </div>
+                        <div class="col-span-2">
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">รูปภาพประกอบ (Image URL)</label>
+                            <input type="url" class="w-full" placeholder="http://...">
+                        </div>
+                    </div>
+                </div>
 
-            <div id="form-D3" class="hidden space-y-4">
-                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">หัวข้อข่าวสาร</label>
-                <input type="text" class="w-full rounded-xl border-slate-200" placeholder="ระบุหัวข้อ...">
-                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">เนื้อหาประชาสัมพันธ์</label>
-                <textarea rows="4" class="w-full rounded-xl border-slate-200" placeholder="ระบุรายละเอียดข่าว..."></textarea>
-            </div>
+                <div id="form-D3" class="hidden space-y-6">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="col-span-2">
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">หัวข้อข่าวสาร</label>
+                            <input type="text" class="w-full" placeholder="ระบุหัวข้อข่าว">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">วันที่เผยแพร่</label>
+                            <input type="text" class="w-full" placeholder="24 ก.พ. 2569">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">ประเภท (Category)</label>
+                            <select class="w-full">
+                                <option value="event">กิจกรรม (Event)</option>
+                                <option value="update">ประกาศข่าว (Announcement)</option>
+                            </select>
+                        </div>
+                        <div class="col-span-2">
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">เนื้อหาข่าวสั้น</label>
+                            <textarea rows="3" class="w-full" placeholder="สรุปข่าวสั้นๆ สำหรับหน้า Card..."></textarea>
+                        </div>
+                        <div class="col-span-2">
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">รูปภาพหน้าปกข่าว (URL)</label>
+                            <input type="url" class="w-full" placeholder="http://...">
+                        </div>
+                    </div>
+                </div>
 
-            <div class="flex gap-4 pt-6">
-                <button type="button" onclick="closeModal()" class="flex-1 px-6 py-3 bg-slate-100 text-slate-500 rounded-xl font-bold">ยกเลิก</button>
-                <button type="submit" class="flex-1 px-6 py-3 bg-primary text-white rounded-xl font-bold shadow-lg shadow-primary/20">บันทึกข้อมูล</button>
-            </div>
-        </form>
+                <div class="flex gap-4 pt-10 sticky bottom-0 bg-white pb-2">
+                    <button type="button" onclick="closeModal()" class="flex-1 px-8 py-4 bg-slate-100 text-slate-500 rounded-2xl font-black uppercase tracking-widest text-xs transition-all hover:bg-slate-200">ยกเลิก</button>
+                    <button type="submit" class="flex-1 px-8 py-4 bg-primary text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-xl shadow-primary/30 transition-all hover:scale-[1.02] active:scale-95">บันทึกข้อมูลเข้าสู่ระบบ</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -217,15 +286,15 @@
         if (type === 'D1') {
             d1.classList.remove('hidden');
             titleLabel.innerText = 'จัดการข้อมูลแหล่งมรดก (D1)';
-            icon.innerText = 'museum';
+            icon.innerText = '';
         } else if (type === 'D2') {
             d2.classList.remove('hidden');
-            titleLabel.innerText = 'จัดการเส้นทางท่องเที่ยว (D2)';
-            icon.innerText = 'route';
+            titleLabel.innerText = 'จัดการจุดแวะพัก/เส้นทาง (D2)';
+            icon.innerText = '';
         } else if (type === 'D3') {
             d3.classList.remove('hidden');
-            titleLabel.innerText = 'จัดการเนื้อหาประชาสัมพันธ์ (D3)';
-            icon.innerText = 'newspaper';
+            titleLabel.innerText = 'จัดการเนื้อหาข่าวสาร (D3)';
+            icon.innerText = '';
         }
 
         modal.classList.add('modal-active');
@@ -238,7 +307,7 @@
 
     document.getElementById('dynamic-form').onsubmit = (e) => {
         e.preventDefault();
-        alert('บันทึกข้อมูลสำเร็จแล้ว!');
+        alert('บันทึกข้อมูลสำเร็จ! ระบบกำลังอัปเดตฐานข้อมูลมรดก...');
         closeModal();
     };
 </script>
